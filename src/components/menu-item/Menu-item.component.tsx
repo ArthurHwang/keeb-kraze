@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import './Menu-item.styles.scss';
-import { url } from 'inspector';
 
 interface Props {
   title: string;
