@@ -41,12 +41,13 @@ export const Directory: React.FC = () => {
   return (
     <div className="directory-menu">
       {sections.map(
-        ({ title, id, linkUrl, imageUrl }): ReactElement => (
+        ({ title, id, linkUrl, imageUrl, size }): ReactElement => (
           <MenuItem
             key={id}
             title={title}
             linkUrl={linkUrl}
             imageUrl={imageUrl}
+            size={size}
           />
         )
       )}
