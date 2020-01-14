@@ -1,8 +1,11 @@
 import React, { useState, ReactElement } from 'react';
-import { MenuItem } from '../menu-item/Menu-item.component';
+import MenuItem from '../menu-item/Menu-item.component';
 import './Directory.styles.scss';
 
-export const Directory: React.FC = () => {
+interface Props {
+  history?: any;
+}
+export const Directory: React.FC<Props> = () => {
   const [sections] = useState([
     {
       title: 'keyboards',
@@ -46,14 +49,8 @@ export const Directory: React.FC = () => {
   return (
     <div className="directory-menu">
       {sections.map(
-        ({ title, id, linkUrl, imageUrl, size }): ReactElement => (
-          <MenuItem
-            key={id}
-            title={title}
-            linkUrl={linkUrl}
-            imageUrl={imageUrl}
-            size={size}
-          />
+        ({ id, ...sectionProps }): ReactElement => (
+          <MenuItem key={id} {...sectionProps} />
         )
       )}
     </div>
