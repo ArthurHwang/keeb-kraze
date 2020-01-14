@@ -17,9 +17,6 @@ const MenuItem: React.FC<Props> = ({
   history,
   match
 }): ReactElement => {
-  console.log(history);
-  console.log(match);
-  console.log(linkUrl);
   return (
     <div
       className={`${size && size} menu-item`}
