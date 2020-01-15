@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-
 import styled from "styled-components";
 
 interface Props extends RouteComponentProps<any> {
