@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import React, { ReactElement } from "react";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface Props extends RouteComponentProps<any> {
   title: string;
@@ -29,7 +29,7 @@ const MenuItem: React.FC<Props> = ({
           backgroundImage: `url(${imageUrl})`
         }}
       >
-        {' '}
+        {" "}
       </div>
       <div className="content">
         <h1 className="title">{title.toUpperCase()}</h1>
@@ -41,7 +41,7 @@ const MenuItem: React.FC<Props> = ({
 
 export default withRouter(MenuItem);
 
-const StyledMenuItem = styled('div')`
+const StyledMenuItem = styled("div")`
   /* .menu-item { */
   min-width: 30%;
   position: relative;

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { SHOP_DATA } from './Shop.data';
-import { CollectionPreview } from '../../components/collection-preview/CollectionPreview';
+import React, { useState } from "react";
+import { SHOP_DATA } from "./Shop.data";
+import { CollectionPreview } from "../../components/CollectionPreview";
 
 export const Shop: React.FC = () => {
   const [collections, setCollections] = useState([...SHOP_DATA]);

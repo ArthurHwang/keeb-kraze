@@ -1,9 +1,6 @@
-import React from 'react';
-import { Directory } from '../../components/directory/Directory';
-// import './Homepage.styles.scss';
-import styled from 'styled-components';
-
-// interface Props {}
+import React from "react";
+import { Directory } from "../../components/Directory";
+import styled from "styled-components";
 
 export const Homepage: React.FC = () => {
   return (
@@ -13,11 +10,9 @@ export const Homepage: React.FC = () => {
   );
 };
 
-const StyledHomepage = styled('div')`
-  /* .homepage { */
+const StyledHomepage = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px 80px;
-  /* } */
 `;
