@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 interface Props {
   title: string;
@@ -13,12 +14,16 @@ interface itemParams {
 }
 
 export const CollectionPreview: React.FC<Props> = ({ title, items }) => (
-  <div className="collection-preview">
+  <StyledCollectionPreview className="collection-preview">
     <h1 className="title">{title.toUpperCase()}</h1>
     <div className="preview">
-      {items.map(({ id, name }) => (
-        <div key={id}>{name}</div>
-      ))}
+      {items
+        .filter((item, idx) => idx < 4)
+        .map(({ id, name }) => (
+          <div key={id}>{name}</div>
+        ))}
     </div>
-  </div>
+  </StyledCollectionPreview>
 );
+
+const StyledCollectionPreview = styled('div')``;

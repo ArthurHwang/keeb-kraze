@@ -1,6 +1,7 @@
 import React, { useState, ReactElement } from 'react';
-import MenuItem from '../menu-item/Menu-item.component';
-import './Directory.styles.scss';
+import MenuItem from '../menu-item/MenuItem';
+// import './Directory.styles.scss';
+import styled from 'styled-components';
 
 interface Props {
   history?: any;
@@ -47,12 +48,21 @@ export const Directory: React.FC<Props> = () => {
   ]);
 
   return (
-    <div className="directory-menu">
+    <StyledDirectory className="directory-menu">
       {sections.map(
         ({ id, ...sectionProps }): ReactElement => (
           <MenuItem key={id} {...sectionProps} />
         )
       )}
-    </div>
+    </StyledDirectory>
   );
 };
+
+const StyledDirectory = styled('div')`
+  /* .directory-menu { */
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* } */
+`;
