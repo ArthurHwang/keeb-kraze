@@ -4,15 +4,25 @@ import styled from "styled-components";
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: any;
   buttonType?: string;
+  isGoogleSignIn?: boolean;
   // onClick;
 }
 
-export const CustomButton: React.FC<Props> = ({ children, ...otherProps }) => (
-  <StyledCustomButton {...otherProps}>{children}</StyledCustomButton>
+export const CustomButton: React.FC<Props> = ({
+  children,
+  isGoogleSignIn,
+  ...otherProps
+}) => (
+  <StyledCustomButton
+    className={`${isGoogleSignIn ? "google-sign-in" : ""}`}
+    {...otherProps}
+  >
+    {children}
+  </StyledCustomButton>
 );
 
 const StyledCustomButton = styled("button")`
-  min-width: 165px;
+  /* min-width: 165px; */
   width: auto;
   height: 50px;
   letter-spacing: 0.5px;
@@ -30,5 +40,9 @@ const StyledCustomButton = styled("button")`
     background-color: ${({ theme }) => theme.white};
     color: black;
     border: 1px solid black;
+  }
+
+  &.google-sign-in {
+    background-color: ${({ theme }) => theme.green};
   }
 `;

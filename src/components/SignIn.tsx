@@ -26,7 +26,7 @@ export const SignIn: React.FC = () => {
           handleChange={handleChange}
           name="email"
           type="email"
-          label="email"
+          label="Email"
           value={values.email}
           required
         />
@@ -34,27 +34,32 @@ export const SignIn: React.FC = () => {
           handleChange={handleChange}
           name="password"
           type="password"
-          label="password"
+          label="Password"
           value={values.password}
           required
         />
-
-        <CustomButton buttonType="submit">Sign In</CustomButton>
-        <CustomButton onClick={signInWithGoogle}>
-          Sign In With Google
-        </CustomButton>
+        <div className="buttons">
+          <CustomButton buttonType="submit">Sign In</CustomButton>
+          <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+            Sign In With Google
+          </CustomButton>
+        </div>
       </form>
     </StyledSignIn>
   );
 };
 
 const StyledSignIn = styled("div")`
-  width: 30vw;
-
+  width: 380px;
   display: flex;
   flex-direction: column;
 
   .title {
     margin: 10px 0;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
   }
 `;

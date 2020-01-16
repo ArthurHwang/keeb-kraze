@@ -5,7 +5,7 @@ import { Shop } from "./pages/Shop";
 import { Header } from "./components/Header";
 import { Login } from "./pages/Login";
 import { ThemeProvider } from "styled-components";
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import "./App.css";
 
 const theme = {
@@ -25,15 +25,34 @@ const theme = {
 };
 
 interface FirebaseUser {
-  currentUser: firebase.User | null;
+  currentUser: any;
 }
 
 export const App: React.FC = () => {
   const [user, setUser] = useState<FirebaseUser>({ currentUser: null });
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      setUser({ currentUser: user });
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      // setUser({ currentUser: user });
+      console.log("fired");
+
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        if (userRef) {
+          userRef.onSnapshot(snapShot => {
+            setUser({
+              currentUser: {
+                id: snapShot.id,
+                ...snapShot.data()
+              }
+            });
+          });
+        }
+      } else {
+        setUser({
+          currentUser: userAuth
+        });
+      }
     });
 
     return () => {
@@ -41,9 +60,13 @@ export const App: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   return (
     <>
-      <Header />
+      <Header currentUser={user} />
       <Switch>
         <ThemeProvider theme={theme}>
           <Route exact path="/" component={Homepage} />
