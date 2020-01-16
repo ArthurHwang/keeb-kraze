@@ -30,7 +30,7 @@ export const Header: React.FC<Props> = ({ currentUser: { currentUser } }) =>
             SIGN OUT
           </div>
         ) : (
-          <Link className="option" to="/signin">
+          <Link className="option" to="/login">
             SIGN IN
           </Link>
         )}

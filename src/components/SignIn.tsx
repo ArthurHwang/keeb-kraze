@@ -2,13 +2,21 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { FormInput } from "./FormInput";
 import { CustomButton } from "./CustomButton";
-import { signInWithGoogle } from "../firebase/firebase.utils";
+import { signInWithGoogle, auth } from "../firebase/firebase.utils";
 
 export const SignIn: React.FC = () => {
   const [values, setValues] = useState({ email: "", password: "" });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const { email, password } = values;
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      setValues({ email: "", password: "" });
+    } catch (error) {
+      console.log(error);
+    }
     setValues({ email: "", password: "" });
   };
 
