@@ -5,7 +5,6 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: any;
   buttonType?: string;
   isGoogleSignIn?: boolean;
-  // onClick;
 }
 
 export const CustomButton: React.FC<Props> = ({
@@ -22,7 +21,6 @@ export const CustomButton: React.FC<Props> = ({
 );
 
 const StyledCustomButton = styled("button")`
-  /* min-width: 165px; */
   width: auto;
   height: 50px;
   letter-spacing: 0.5px;

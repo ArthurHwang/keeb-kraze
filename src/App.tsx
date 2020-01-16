@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Homepage } from "./pages/Homepage";
 import { Route, Switch } from "react-router-dom";
 import { Shop } from "./pages/Shop";
@@ -6,6 +6,9 @@ import { Header } from "./components/Header";
 import { Login } from "./pages/Login";
 import { ThemeProvider } from "styled-components";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { Helmet } from "react-helmet";
+import { connect } from "react-redux";
+import { setCurrentUser } from "./redux/user/userActions";
 import "./App.css";
 
 const theme = {
@@ -24,23 +27,14 @@ const theme = {
   `
 };
 
-interface FirebaseUser {
-  currentUser: any;
-}
-
-export const App: React.FC = () => {
-  const [user, setUser] = useState<FirebaseUser>({ currentUser: null });
-
+const _App: React.FC<any> = ({ setCurrentUser }) => {
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      // setUser({ currentUser: user });
-      console.log("fired");
-
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         if (userRef) {
           userRef.onSnapshot(snapShot => {
-            setUser({
+            setCurrentUser({
               currentUser: {
                 id: snapShot.id,
                 ...snapShot.data()
@@ -49,24 +43,30 @@ export const App: React.FC = () => {
           });
         }
       } else {
-        setUser({
-          currentUser: userAuth
-        });
+        setCurrentUser(userAuth);
       }
     });
 
     return () => {
       unsubscribeFromAuth();
     };
-  }, []);
+  });
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    console.log(setCurrentUser);
+  }, [setCurrentUser]);
 
   return (
     <>
-      <Header currentUser={user} />
+      <Helmet>
+        <meta
+          name="description"
+          content="Where people come to find custom keyboards and parts"
+        />
+        <link rel="icon" type="image/png" href="/favicon.png" sizes="16x16" />
+        <title>Keeb Kraze</title>
+      </Helmet>
+      <Header />
       <Switch>
         <ThemeProvider theme={theme}>
           <Route exact path="/" component={Homepage} />
@@ -77,3 +77,9 @@ export const App: React.FC = () => {
     </>
   );
 };
+
+const mapDispatchToProps = (dispatch: any) => ({
+  setCurrentUser: (user: any) => dispatch(setCurrentUser(user))
+});
+
+export const App = connect(null, mapDispatchToProps)(_App);

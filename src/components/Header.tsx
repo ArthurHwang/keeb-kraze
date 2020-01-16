@@ -3,40 +3,46 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { GoKeyboard as Logo } from "react-icons/go";
 import { auth } from "../firebase/firebase.utils";
+import { connect } from "react-redux";
 
 interface Props {
   currentUser: any;
 }
 
-export const Header: React.FC<Props> = ({ currentUser: { currentUser } }) =>
-  (console.log(currentUser) as any) || (
-    <StyledHeader>
-      <Link className="logo-container" to="/">
-        <Logo fontSize="50px" className="logo" />
+const _Header: React.FC<Props> = ({ currentUser }) => (
+  <StyledHeader>
+    <Link className="logo-container" to="/">
+      <Logo fontSize="50px" className="logo" />
+    </Link>
+    <div className="options">
+      <Link to="/shop" className="option">
+        SHOP
       </Link>
-      <div className="options">
-        <Link to="/shop" className="option">
-          SHOP
+      <Link to="/contact" className="option">
+        CONTACT
+      </Link>
+      {currentUser ? (
+        <div
+          className="option"
+          style={{ color: "#524763" }}
+          onClick={() => auth.signOut()}
+        >
+          SIGN OUT
+        </div>
+      ) : (
+        <Link className="option" to="/login">
+          SIGN IN
         </Link>
-        <Link to="/contact" className="option">
-          CONTACT
-        </Link>
-        {currentUser ? (
-          <div
-            className="option"
-            style={{ color: "#524763" }}
-            onClick={() => auth.signOut()}
-          >
-            SIGN OUT
-          </div>
-        ) : (
-          <Link className="option" to="/login">
-            SIGN IN
-          </Link>
-        )}
-      </div>
-    </StyledHeader>
-  );
+      )}
+    </div>
+  </StyledHeader>
+);
+
+const mapStateToProps = (state: any) => ({
+  currentUser: state.user.currentUser
+});
+
+export const Header = connect(mapStateToProps)(_Header);
 
 const StyledHeader = styled("header")`
   height: 70px;

@@ -2,18 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 interface Props {
-  id?: number;
   price: number;
   name: string;
   imageUrl: string;
 }
 
-export const CollectionItem: React.FC<Props> = ({
-  id,
-  name,
-  price,
-  imageUrl
-}) => (
+export const CollectionItem: React.FC<Props> = ({ name, price, imageUrl }) => (
   <StyledCollectionItem>
     <div
       className="image"
