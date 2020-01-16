@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Homepage } from "./pages/Homepage";
 import { Route, Switch } from "react-router-dom";
 import { Shop } from "./pages/Shop";
 import { Header } from "./components/Header";
 import { Login } from "./pages/Login";
 import { ThemeProvider } from "styled-components";
+import { auth } from "./firebase/firebase.utils";
 import "./App.css";
 
 const theme = {
@@ -14,7 +15,8 @@ const theme = {
   green: "#cbe56c",
   black: "#333",
   grey: "#d8d8d8",
-  // mixins below
+  white: "#fff",
+  // mixins
   shrinkLabel: () => `
       top: -14px;
       font-size: 12px;
@@ -22,7 +24,23 @@ const theme = {
   `
 };
 
+interface FirebaseUser {
+  currentUser: firebase.User | null;
+}
+
 export const App: React.FC = () => {
+  const [user, setUser] = useState<FirebaseUser>({ currentUser: null });
+
+  useEffect(() => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+      setUser({ currentUser: user });
+    });
+
+    return () => {
+      unsubscribeFromAuth();
+    };
+  }, []);
+
   return (
     <>
       <Header />

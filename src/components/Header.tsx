@@ -27,9 +27,6 @@ const StyledHeader = styled("header")`
   margin-bottom: 25px;
 
   .logo-container {
-    /* height: 100%; */
-    /* width: 70px; */
-    /* padding: 25px; */
     display: flex;
     align-items: center;
   }

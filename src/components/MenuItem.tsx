@@ -27,9 +27,7 @@ const MenuItem: React.FC<Props> = ({
         style={{
           backgroundImage: `url(${imageUrl})`
         }}
-      >
-        {" "}
-      </div>
+      />
       <div className="content">
         <h1 className="title">{title.toUpperCase()}</h1>
         <span className="subtitle">SHOP NOW</span>
@@ -41,7 +39,6 @@ const MenuItem: React.FC<Props> = ({
 export default withRouter(MenuItem);
 
 const StyledMenuItem = styled("div")`
-  /* .menu-item { */
   min-width: 30%;
   position: relative;
   height: 240px;
@@ -109,5 +106,4 @@ const StyledMenuItem = styled("div")`
       font-size: 16px;
     }
   }
-  /* } */
 `;

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FormInput } from "./FormInput";
+import { CustomButton } from "./CustomButton";
+import { signInWithGoogle } from "../firebase/firebase.utils";
 
 export const SignIn: React.FC = () => {
   const [values, setValues] = useState({ email: "", password: "" });
@@ -8,13 +10,11 @@ export const SignIn: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     setValues({ email: "", password: "" });
-    console.log(values);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { value, name } = event.target;
     setValues({ ...values, [name]: value } as any);
-    console.log(setValues);
   };
 
   return (
@@ -38,7 +38,11 @@ export const SignIn: React.FC = () => {
           value={values.password}
           required
         />
-        <input type="submit" value="Submit Form" />
+
+        <CustomButton buttonType="submit">Sign In</CustomButton>
+        <CustomButton onClick={signInWithGoogle}>
+          Sign In With Google
+        </CustomButton>
       </form>
     </StyledSignIn>
   );
@@ -46,4 +50,11 @@ export const SignIn: React.FC = () => {
 
 const StyledSignIn = styled("div")`
   width: 30vw;
+
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    margin: 10px 0;
+  }
 `;

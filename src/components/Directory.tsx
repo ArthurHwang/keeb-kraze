@@ -58,10 +58,8 @@ export const Directory: React.FC<Props> = () => {
 };
 
 const StyledDirectory = styled("div")`
-  /* .directory-menu { */
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  /* } */
 `;
