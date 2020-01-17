@@ -11,8 +11,8 @@ export const Homepage: React.FC = () => {
 };
 
 const StyledHomepage = styled("div")`
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
   padding: 20px 80px;
 `;

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { GoKeyboard as Logo } from "react-icons/go";
 import { auth } from "../firebase/firebase.utils";
 import { connect } from "react-redux";
+import { CartIcon } from "./CartIcon";
 
 interface Props {
   currentUser: any;
@@ -22,11 +23,7 @@ const _Header: React.FC<Props> = ({ currentUser }) => (
         CONTACT
       </Link>
       {currentUser ? (
-        <div
-          className="option"
-          style={{ color: "#524763" }}
-          onClick={() => auth.signOut()}
-        >
+        <div className="option hover-change" onClick={() => auth.signOut()}>
           SIGN OUT
         </div>
       ) : (
@@ -34,6 +31,9 @@ const _Header: React.FC<Props> = ({ currentUser }) => (
           SIGN IN
         </Link>
       )}
+      <Link to="/cart" className="option">
+        <CartIcon />
+      </Link>
     </div>
   </StyledHeader>
 );
