@@ -19,18 +19,25 @@ interface Props {
   currentUser: User;
   toggleCart: () => void;
   showCart: boolean;
+  cartItems: any[];
 }
 
 const mapStateToProps = ({ user, cart }: RootStateOrAny) => ({
   currentUser: user.currentUser,
-  showCart: cart.showCart
+  showCart: cart.showCart,
+  cartItems: cart.cartItems
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   toggleCart: () => dispatch(toggleCart())
 });
 
-const _Header: React.FC<Props> = ({ currentUser, toggleCart, showCart }) => {
+const _Header: React.FC<Props> = ({
+  currentUser,
+  toggleCart,
+  showCart,
+  cartItems
+}) => {
   return (
     <StyledHeader>
       <Link className="logo-container" to="/">
@@ -52,9 +59,9 @@ const _Header: React.FC<Props> = ({ currentUser, toggleCart, showCart }) => {
             SIGN IN
           </Link>
         )}
-        <CartIcon handleClick={toggleCart} />
+        <CartIcon handleClick={toggleCart} cartItems={cartItems} />
       </div>
-      {showCart && <CartDropdown />}
+      {showCart && <CartDropdown cartItems={cartItems} />}
     </StyledHeader>
   );
 };
