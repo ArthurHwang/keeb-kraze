@@ -99,6 +99,7 @@ const StyledMenuItem = styled("div")`
       margin-bottom: 6px;
       font-size: 22px;
       color: #4a4a4a;
+      margin-top: 0;
     }
 
     .subtitle {

@@ -1,19 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: any;
+  // children: any;
   buttonType?: string;
   isGoogleSignIn?: boolean;
+  inverted?: boolean;
 }
 
 export const CustomButton: React.FC<Props> = ({
   children,
   isGoogleSignIn,
+  inverted,
   ...otherProps
 }) => (
   <StyledCustomButton
-    className={`${isGoogleSignIn ? "google-sign-in" : ""}`}
+    className={`${inverted && "inverted"} ${isGoogleSignIn &&
+      "google-sign-in"} custom-button`}
     {...otherProps}
   >
     {children}
@@ -33,6 +35,19 @@ const StyledCustomButton = styled("button")`
   font-weight: bolder;
   border: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+
+  &.inverted {
+    background-color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.black};
+    border: 1px solid black;
+    &:hover {
+      background-color: ${({ theme }) => theme.black};
+      color: white;
+      border: none;
+    }
+  }
 
   &:hover {
     background-color: ${({ theme }) => theme.white};

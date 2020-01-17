@@ -3,7 +3,8 @@ import { RootStateOrAny } from "react-redux";
 import { AnyAction } from "redux";
 
 const INITIAL_STATE = {
-  showCart: false
+  showCart: false,
+  cartItems: []
 };
 
 export const cartReducer = (
@@ -15,6 +16,11 @@ export const cartReducer = (
       return {
         ...state,
         showCart: !state.showCart
+      };
+    case CartActionTypes.ADD_ITEM:
+      return {
+        ...state,
+        cartItems: [...state.cartItems, action.payload]
       };
     default:
       return state;

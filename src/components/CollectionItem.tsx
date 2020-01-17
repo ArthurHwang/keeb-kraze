@@ -1,26 +1,48 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { addItem } from "../redux/cart/cartActions";
+import { CustomButton } from "./CustomButton";
+import { Dispatch } from "redux";
 
 interface Props {
-  price: number;
-  name: string;
-  imageUrl: string;
+  addItem: any;
+  item: {
+    price: number;
+    name: string;
+    imageUrl: string;
+  };
 }
 
-export const CollectionItem: React.FC<Props> = ({ name, price, imageUrl }) => (
-  <StyledCollectionItem>
-    <div
-      className="image"
-      style={{
-        backgroundImage: `url(${imageUrl})`
-      }}
-    />
-    <div className="collection-footer">
-      <span className="name">{name}</span>
-      <span className="price">{price}</span>
-    </div>
-  </StyledCollectionItem>
-);
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  addItem: (item: any) => dispatch(addItem(item))
+});
+
+export const _CollectionItem: React.FC<Props> = ({ item, addItem }) => {
+  const { name, price, imageUrl } = item;
+  return (
+    <StyledCollectionItem>
+      <div
+        className="image"
+        style={{
+          backgroundImage: `url(${imageUrl})`
+        }}
+      />
+      <div className="collection-footer">
+        <span className="name">{name}</span>
+        <span className="price">{price}</span>
+      </div>
+      <CustomButton onClick={() => addItem(item)} inverted>
+        Add to Cart
+      </CustomButton>
+    </StyledCollectionItem>
+  );
+};
+
+export const CollectionItem = connect(
+  null,
+  mapDispatchToProps
+)(_CollectionItem);
 
 const StyledCollectionItem = styled("div")`
   width: 22%;
@@ -28,6 +50,26 @@ const StyledCollectionItem = styled("div")`
   flex-direction: column;
   height: 350px;
   align-items: center;
+  position: relative;
+
+  .custom-button {
+    width: 80%;
+    opacity: 0.7;
+    position: absolute;
+    top: 255px;
+    display: none;
+  }
+
+  &:hover {
+    .image {
+      opacity: 0.8;
+    }
+
+    .custom-button {
+      opacity: 0.85;
+      display: flex;
+    }
+  }
 
   .image {
     width: 100%;
