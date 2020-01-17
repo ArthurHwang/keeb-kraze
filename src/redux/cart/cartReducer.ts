@@ -1,20 +1,20 @@
-import { UserActionTypes } from "./userTypes";
+import { CartActionTypes } from "./cartTypes";
 import { RootStateOrAny } from "react-redux";
 import { AnyAction } from "redux";
 
 const INITIAL_STATE = {
-  currentUser: null
+  showCart: false
 };
 
-export const userReducer = (
+export const cartReducer = (
   state: RootStateOrAny = INITIAL_STATE,
   action: AnyAction
 ) => {
   switch (action.type) {
-    case UserActionTypes.SET_CURRENT_USER:
+    case CartActionTypes.TOGGLE_CART:
       return {
         ...state,
-        currentUser: action.payload
+        showCart: !state.showCart
       };
     default:
       return state;

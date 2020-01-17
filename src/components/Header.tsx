@@ -3,23 +3,30 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { GoKeyboard as Logo } from "react-icons/go";
 import { auth } from "../firebase/firebase.utils";
-import { connect } from "react-redux";
+import { connect, RootStateOrAny } from "react-redux";
 import { CartIcon } from "./CartIcon";
 import { CartDropdown } from "./CartDropdown";
-import { toggleCart } from "../redux/nav/navActions";
+import { toggleCart } from "../redux/cart/cartActions";
+import { Dispatch } from "redux";
 
+export interface User {
+  id: string;
+  createdAt: Date;
+  displayName: string;
+  email: string;
+}
 interface Props {
-  currentUser: any;
+  currentUser: User;
   toggleCart: () => void;
   showCart: boolean;
 }
 
-const mapStateToProps = ({ user, nav }: any) => ({
+const mapStateToProps = ({ user, cart }: RootStateOrAny) => ({
   currentUser: user.currentUser,
-  showCart: nav.showCart
+  showCart: cart.showCart
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   toggleCart: () => dispatch(toggleCart())
 });
 
@@ -45,9 +52,7 @@ const _Header: React.FC<Props> = ({ currentUser, toggleCart, showCart }) => {
             SIGN IN
           </Link>
         )}
-        {/* <Link to="/cart" className="option"> */}
         <CartIcon handleClick={toggleCart} />
-        {/* </Link> */}
       </div>
       {showCart && <CartDropdown />}
     </StyledHeader>

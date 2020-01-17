@@ -1,3 +1,3 @@
-export const NavActionTypes = {
+export const CartActionTypes = {
   TOGGLE_CART: "TOGGLE_CART"
 };

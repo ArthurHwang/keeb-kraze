@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 interface Props {
   handleChange?(e: React.ChangeEvent<HTMLInputElement>): Function | void;
-  label?: any;
+  label?: string;
   value: string;
   name?: string;
   type: string;
-  required?: any;
+  required?: boolean;
 }
 
 export const FormInput: React.FC<Props> = ({

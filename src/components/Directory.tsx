@@ -2,10 +2,7 @@ import React, { useState, ReactElement } from "react";
 import MenuItem from "./MenuItem";
 import styled from "styled-components";
 
-interface Props {
-  history?: any;
-}
-export const Directory: React.FC<Props> = () => {
+export const Directory: React.FC = () => {
   const [sections] = useState([
     {
       title: "keyboards",

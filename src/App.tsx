@@ -7,20 +7,26 @@ import { Login } from "./pages/Login";
 import { ThemeProvider } from "styled-components";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { Helmet } from "react-helmet";
-import { connect } from "react-redux";
+import { connect, RootStateOrAny } from "react-redux";
+import { Dispatch } from "redux";
 import { setCurrentUser } from "./redux/user/userActions";
 import { globalTheme } from "./globalTheme";
 import "./App.css";
 
-const mapStateToProps = (state: any) => ({
+interface Props {
+  setCurrentUser: (user: object | null) => any;
+  currentUser: RootStateOrAny;
+}
+
+const mapStateToProps = (state: RootStateOrAny) => ({
   currentUser: state.user.currentUser
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   setCurrentUser: (user: any) => dispatch(setCurrentUser(user))
 });
 
-const _App: React.FC<any> = ({ setCurrentUser, currentUser }) => {
+const _App: React.FC<Props> = ({ setCurrentUser, currentUser }) => {
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
