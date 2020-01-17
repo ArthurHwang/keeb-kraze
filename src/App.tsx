@@ -12,6 +12,14 @@ import { setCurrentUser } from "./redux/user/userActions";
 import { globalTheme } from "./globalTheme";
 import "./App.css";
 
+const mapStateToProps = (state: any) => ({
+  currentUser: state.user.currentUser
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  setCurrentUser: (user: any) => dispatch(setCurrentUser(user))
+});
+
 const _App: React.FC<any> = ({ setCurrentUser, currentUser }) => {
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -31,7 +39,6 @@ const _App: React.FC<any> = ({ setCurrentUser, currentUser }) => {
         setCurrentUser(userAuth);
       }
     });
-
     return () => {
       unsubscribeFromAuth();
     };
@@ -61,13 +68,5 @@ const _App: React.FC<any> = ({ setCurrentUser, currentUser }) => {
     </>
   );
 };
-
-const mapStateToProps = (state: any) => ({
-  currentUser: state.user.currentUser
-});
-
-const mapDispatchToProps = (dispatch: any) => ({
-  setCurrentUser: (user: any) => dispatch(setCurrentUser(user))
-});
 
 export const App = connect(mapStateToProps, mapDispatchToProps)(_App);

@@ -1,7 +1,18 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import { rootReducer } from "./rootReducer";
 import logger from "redux-logger";
 
 const middlewares = [logger];
 
-export const store = createStore(rootReducer, applyMiddleware(...middlewares));
+const composeEnhancers =
+  // @ts-ignore
+  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? // @ts-ignore
+      // @ts-ignore
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : // @ts-ignore
+      compose;
+
+const enhancer = composeEnhancers(applyMiddleware(...middlewares));
+
+export const store = createStore(rootReducer, enhancer);
