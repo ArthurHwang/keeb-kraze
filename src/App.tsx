@@ -11,7 +11,6 @@ import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/userActions";
 import { globalTheme } from "./globalTheme";
 import "./App.css";
-import { auth } from "firebase";
 
 const _App: React.FC<any> = ({ setCurrentUser, currentUser }) => {
   useEffect(() => {
