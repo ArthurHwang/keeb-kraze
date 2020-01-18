@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Homepage } from "./pages/Homepage";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Shop } from "./pages/Shop";
+import { Checkout } from "./pages/Checkout";
 import { Header } from "./components/Header";
 import { Login } from "./pages/Login";
 import { ThemeProvider } from "styled-components";
@@ -63,12 +64,14 @@ const _App: React.FC<Props> = ({ setCurrentUser, currentUser }) => {
       <Header />
       <Switch>
         <ThemeProvider theme={globalTheme}>
-          <Route exact path="/" component={Homepage} />
           <Route path="/shop" component={Shop} />
+          <Route exact path="/checkout" component={Checkout} />
           <Route
+            exact
             path="/login"
             render={() => (currentUser ? <Redirect to="/" /> : <Login />)}
           />
+          <Route path="/" component={Homepage} />
         </ThemeProvider>
       </Switch>
     </>

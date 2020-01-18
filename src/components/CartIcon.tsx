@@ -6,7 +6,8 @@ import { ReactComponent as ShoppingIcon } from "../assets/shopping-bag.svg";
 interface Props {
   handleClick: () => void;
   // cart: any[];
-  cartItems: any[];
+  // cartItems: any[];
+  itemCount: number;
 }
 
 // interface ReduxProps {
@@ -17,14 +18,16 @@ interface Props {
 //   cart: cart.cartItems
 // });
 
-export const CartIcon: React.FC<Props> = ({ handleClick, cartItems }) => {
-  let quantityCount = 0;
-
-  cartItems.forEach(item => (quantityCount += item.quantity));
+export const CartIcon: React.FC<Props> = ({ handleClick, itemCount }) => {
+  console.log("called");
+  // const quantityCounter = cartItems.reduce(
+  //   (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
+  //   0
+  // );
   return (
     <StyledCartIcon onClick={handleClick}>
       <ShoppingIcon className="shopping-icon" />
-      <span className="item-count">{quantityCount}</span>
+      <span className="item-count">{itemCount}</span>
     </StyledCartIcon>
   );
 };

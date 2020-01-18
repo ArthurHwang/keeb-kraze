@@ -5,9 +5,10 @@ import { GoKeyboard as Logo } from "react-icons/go";
 import { auth } from "../firebase/firebase.utils";
 import { connect, RootStateOrAny } from "react-redux";
 import { CartIcon } from "./CartIcon";
-import { CartDropdown } from "./CartDropdown";
+import CartDropdown from "./CartDropdown";
 import { toggleCart } from "../redux/cart/cartActions";
 import { Dispatch } from "redux";
+import { selectCartItemsCount } from "../redux/cart/cartSelectors";
 
 export interface User {
   id: string;
@@ -20,12 +21,14 @@ interface Props {
   toggleCart: () => void;
   showCart: boolean;
   cartItems: any[];
+  itemCount: number;
 }
 
 const mapStateToProps = ({ user, cart }: RootStateOrAny) => ({
   currentUser: user.currentUser,
   showCart: cart.showCart,
-  cartItems: cart.cartItems
+  cartItems: cart.cartItems,
+  itemCount: selectCartItemsCount(cart)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -36,7 +39,8 @@ const _Header: React.FC<Props> = ({
   currentUser,
   toggleCart,
   showCart,
-  cartItems
+  cartItems,
+  itemCount
 }) => {
   return (
     <StyledHeader>
@@ -59,7 +63,7 @@ const _Header: React.FC<Props> = ({
             SIGN IN
           </Link>
         )}
-        <CartIcon handleClick={toggleCart} cartItems={cartItems} />
+        <CartIcon handleClick={toggleCart} itemCount={itemCount} />
       </div>
       {showCart && <CartDropdown cartItems={cartItems} />}
     </StyledHeader>
