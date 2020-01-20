@@ -1,29 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as ShoppingIcon } from "../assets/shopping-bag.svg";
-// import { connect, RootStateOrAny } from "react-redux";
 
 interface Props {
   handleClick: () => void;
-  // cart: any[];
-  // cartItems: any[];
   itemCount: number;
 }
 
-// interface ReduxProps {
-//   cart: RootStateOrAny;
-// }
-
-// const mapStateToProps = ({ cart }: ReduxProps) => ({
-//   cart: cart.cartItems
-// });
-
 export const CartIcon: React.FC<Props> = ({ handleClick, itemCount }) => {
-  console.log("called");
-  // const quantityCounter = cartItems.reduce(
-  //   (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
-  //   0
-  // );
   return (
     <StyledCartIcon onClick={handleClick}>
       <ShoppingIcon className="shopping-icon" />
@@ -31,8 +15,6 @@ export const CartIcon: React.FC<Props> = ({ handleClick, itemCount }) => {
     </StyledCartIcon>
   );
 };
-
-// export const CartIcon = connect(mapStateToProps)(_CartIcon);
 
 const StyledCartIcon = styled("div")`
   width: 45px;

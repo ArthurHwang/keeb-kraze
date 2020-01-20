@@ -64,6 +64,7 @@ const _App: React.FC<Props> = ({ setCurrentUser, currentUser }) => {
       <Header />
       <Switch>
         <ThemeProvider theme={globalTheme}>
+          <Route exact path="/" component={Homepage} />
           <Route path="/shop" component={Shop} />
           <Route exact path="/checkout" component={Checkout} />
           <Route
@@ -71,7 +72,6 @@ const _App: React.FC<Props> = ({ setCurrentUser, currentUser }) => {
             path="/login"
             render={() => (currentUser ? <Redirect to="/" /> : <Login />)}
           />
-          <Route path="/" component={Homepage} />
         </ThemeProvider>
       </Switch>
     </>

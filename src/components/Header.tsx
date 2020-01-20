@@ -5,7 +5,7 @@ import { GoKeyboard as Logo } from "react-icons/go";
 import { auth } from "../firebase/firebase.utils";
 import { connect, RootStateOrAny } from "react-redux";
 import { CartIcon } from "./CartIcon";
-import CartDropdown from "./CartDropdown";
+import { CartDropdown } from "./CartDropdown";
 import { toggleCart } from "../redux/cart/cartActions";
 import { Dispatch } from "redux";
 import { selectCartItemsCount } from "../redux/cart/cartSelectors";
@@ -20,7 +20,7 @@ interface Props {
   currentUser: User;
   toggleCart: () => void;
   showCart: boolean;
-  cartItems: any[];
+  cartItems: any;
   itemCount: number;
 }
 
@@ -65,6 +65,8 @@ const _Header: React.FC<Props> = ({
         )}
         <CartIcon handleClick={toggleCart} itemCount={itemCount} />
       </div>
+      {/* 
+      //@ts-ignore */}
       {showCart && <CartDropdown cartItems={cartItems} />}
     </StyledHeader>
   );
