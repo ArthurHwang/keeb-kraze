@@ -5,12 +5,13 @@ import { CustomButton } from "./CustomButton";
 import { withRouter } from "react-router-dom";
 import { toggleCart } from "../redux/cart/cartActions";
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
 
 interface Props {
-  cartItems: any;
-  history: any;
+  cartItems: any[];
+  history: any[];
   toggleCart: () => void;
-  dispatch: any;
+  dispatch: Dispatch;
 }
 
 const _CartDropdown: React.FC<Props> = ({ cartItems, history, dispatch }) => (

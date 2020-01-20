@@ -23,6 +23,40 @@ export const cartReducer = (
         ...state,
         cartItems: addItemToCart(state.cartItems, action.payload)
       };
+    case CartActionTypes.CLEAR_ITEM_FROM_CART:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (cartItem: any) => cartItem.id !== action.payload.id
+        )
+      };
+    case CartActionTypes.DECREASE_CART_QUANTITY:
+      return {
+        ...state,
+        cartItems: state.cartItems.map((cartItem: any) => {
+          if (cartItem.id === action.payload.id) {
+            // @ts-ignore
+            return {
+              ...cartItem,
+              quantity: cartItem.quantity >= 1 ? cartItem.quantity - 1 : 0
+            };
+          } else {
+            return cartItem;
+          }
+        })
+      };
+    case CartActionTypes.INCREASE_CART_QUANTITY:
+      return {
+        ...state,
+        cartItems: state.cartItems.map((cartItem: any) => {
+          if (cartItem.id === action.payload.id) {
+            // @ts-ignore
+            return { ...cartItem, quantity: cartItem.quantity + 1 };
+          } else {
+            return cartItem;
+          }
+        })
+      };
     default:
       return state;
   }

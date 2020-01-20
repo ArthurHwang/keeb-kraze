@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  // children: any;
   buttonType?: string;
   isGoogleSignIn?: boolean;
   inverted?: boolean;
