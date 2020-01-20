@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-import { SHOP_DATA } from "../data/Shop.data";
-import { CollectionPreview } from "../components/CollectionPreview";
+import React from "react";
+import { CollectionsOverview } from "../components/CollectionsOverview";
+import styled from "styled-components";
 
-export const Shop: React.FC = () => {
-  const [collections] = useState([...SHOP_DATA]);
+export const Shop: React.FC = () => (
+  <StyledShop>
+    <CollectionsOverview />
+  </StyledShop>
+);
 
-  return (
-    <div className="shop-page">
-      {collections.map(({ id, ...otherCollectionProps }) => (
-        <CollectionPreview key={id} {...otherCollectionProps} />
-      ))}
-    </div>
-  );
-};
+const StyledShop = styled("div")`
+  display: flex;
+  flex-direction: column;
+`;

@@ -1,58 +1,39 @@
-import React, { useState, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import MenuItem from "./MenuItem";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { selectDirectorySections } from "../redux/directory/directorySelectors";
+import { createStructuredSelector } from "reselect";
 
-export const Directory: React.FC = () => {
-  const [sections] = useState([
-    {
-      title: "keyboards",
-      imageUrl:
-        "https://live.staticflickr.com/5826/30295544320_68b9b0d6b5_b.jpg",
-      id: 1,
-      linkUrl: "shop/keyboards"
-    },
-    {
-      title: "keycaps",
-      imageUrl:
-        "https://i.pinimg.com/originals/93/6a/fc/936afc46bac9f85de22966c88677217d.jpg",
-      id: 2,
-      linkUrl: "shop/keycaps"
-    },
-    {
-      title: "switches",
-      imageUrl:
-        "https://cdn.shopify.com/s/files/1/3099/8088/products/Gateron_Silent_Red_1024x1024@2x.jpg?v=1558704648",
-      id: 3,
-      linkUrl: "shop/switches"
-    },
-    {
-      title: "accessories",
-      imageUrl:
-        "https://images.idgesg.net/images/article/2018/07/img_20180706_202831-100764491-large.jpg",
-      size: "large",
-      id: 4,
-      linkUrl: "shop/accessories"
-    },
-    {
-      title: "parts",
-      imageUrl:
-        "https://cdn.shopify.com/s/files/1/1674/0405/products/sp111_plate_768x.png?v=1575664053",
-      size: "large",
-      id: 5,
-      linkUrl: "shop/parts"
-    }
-  ]);
+interface Props {
+  directory: {
+    map: any;
+    sections: {
+      title: string;
+      imageUrl: string;
+      id: number;
+      linkUrl: string;
+    }[];
+  };
+}
 
+const mapStateToProps = createStructuredSelector({
+  directory: selectDirectorySections
+});
+
+export const _Directory: React.FC<Props> = ({ directory }) => {
   return (
     <StyledDirectory className="directory-menu">
-      {sections.map(
-        ({ id, ...sectionProps }): ReactElement => (
+      {directory.map(
+        ({ id, ...sectionProps }: any): ReactElement => (
           <MenuItem key={id} {...sectionProps} />
         )
       )}
     </StyledDirectory>
   );
 };
+
+export const Directory = connect(mapStateToProps)(_Directory);
 
 const StyledDirectory = styled("div")`
   width: 100%;
