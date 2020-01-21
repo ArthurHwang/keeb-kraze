@@ -3,19 +3,14 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { CollectionPreview } from "../components/CollectionPreview";
-import { selectShopCollection } from "../redux/shop/shopSelectors";
+import { selectCollectionsForPreview } from "../redux/shop/shopSelectors";
 
 const mapStateToProps = createStructuredSelector({
-  collection: selectShopCollection
+  collection: selectCollectionsForPreview
 });
 
 interface Props {
-  collection: {
-    id: number;
-    title: string;
-    routeName: string;
-    items: { id: number; name: string; imageUrl: string; price: number }[];
-  }[];
+  collection: any[];
 }
 
 const _CollectionsOverview: React.FC<Props> = ({ collection }) => (
