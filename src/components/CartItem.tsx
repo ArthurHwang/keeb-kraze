@@ -7,7 +7,6 @@ interface Props {
   price: number;
   imageUrl: string;
 }
-
 export const CartItem: React.FC<Props> = ({
   name,
   quantity,
