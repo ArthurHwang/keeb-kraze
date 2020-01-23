@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect, RootStateOrAny } from "react-redux";
 import { selectCartItems, selectCartTotal } from "../redux/cart/cartSelectors";
 import { CheckoutItem } from "../components/CheckoutItem";
+import { StripeCheckoutButton } from "../components/StripeButton";
 
 interface Props {
   cartItems: any[];
@@ -40,6 +41,12 @@ const _Checkout: React.FC<Props> = ({ cartItems, total }) =>
       <div className="total">
         <span>TOTAL: ${total}</span>
       </div>
+      <StripeCheckoutButton price={total} />
+      <div className="test-warning">
+        *Please use the following test credit card for payments
+        <br />
+        4242 4242 4242 4242 - Exp: 1/20 - CVV: 123
+      </div>
     </StyledCheckout>
   );
 
@@ -74,5 +81,17 @@ const StyledCheckout = styled("div")`
     margin-top: 30px;
     margin-left: auto;
     font-size: 36px;
+  }
+
+  button {
+    margin-left: auto;
+    margin-top: 50px;
+  }
+
+  .test-warning {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 24px;
+    color: red;
   }
 `;
