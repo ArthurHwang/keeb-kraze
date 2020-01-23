@@ -1,5 +1,4 @@
 import React from "react";
-
 import styled from "styled-components";
 import { CollectionItem } from "../components/CollectionItem";
 import { RouteProps } from "react-router-dom";
@@ -21,8 +20,8 @@ export const _Collection: React.FC<Props> = ({ collection }: any) => {
       <h2 className="title">{title}</h2>
 
       <div className="items">
-        {items.map((item: any) => (
-          <CollectionItem item={item} />
+        {items.map((item: any, idx: number) => (
+          <CollectionItem item={item} key={idx} />
         ))}
       </div>
     </StyledCollection>

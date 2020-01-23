@@ -6,28 +6,39 @@ import { Checkout } from "./pages/Checkout";
 import { Header } from "./components/Header";
 import { Login } from "./pages/Login";
 import { ThemeProvider } from "styled-components";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import {
+  auth,
+  createUserProfileDocument
+  // addCollectionAndItems
+} from "./firebase/firebase.utils";
 import { Helmet } from "react-helmet";
 import { connect, RootStateOrAny } from "react-redux";
 import { Dispatch } from "redux";
 import { setCurrentUser } from "./redux/user/userActions";
 import { globalTheme } from "./globalTheme";
 import "./App.css";
+// import { selectCollectionsForPreview } from './redux/shop/shopSelectors';
 
 interface Props {
   setCurrentUser: (user: object | null) => any;
   currentUser: RootStateOrAny;
+  // collectionsArray: RootStateOrAny;
 }
 
 const mapStateToProps = (state: RootStateOrAny) => ({
   currentUser: state.user.currentUser
+  // collectionsArray: selectCollectionsForPreview(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   setCurrentUser: (user: any) => dispatch(setCurrentUser(user))
 });
 
-const _App: React.FC<Props> = ({ setCurrentUser, currentUser }) => {
+const _App: React.FC<Props> = ({
+  setCurrentUser,
+  currentUser
+  // collectionsArray
+}) => {
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
@@ -44,6 +55,16 @@ const _App: React.FC<Props> = ({ setCurrentUser, currentUser }) => {
         }
       } else {
         setCurrentUser(userAuth);
+        // console.log(collectionsArray);
+        // addCollectionAndItems(
+        //   'collections',
+        //   collectionsArray.map(
+        //     ({ title, items }: { title: string; items: any[] }) => ({
+        //       title,
+        //       items
+        //     })
+        //   )
+        // );
       }
     });
     return () => {
