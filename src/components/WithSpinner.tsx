@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// import { SpinnerOverlay, SpinnerContainer } from
-
 export const WithSpinner: any = (WrappedComponent: any) => ({
   isLoading,
   ...otherProps

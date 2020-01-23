@@ -3,14 +3,14 @@ import { CollectionsOverview } from "../components/CollectionsOverview";
 import styled from "styled-components";
 import { Route, RouteProps } from "react-router-dom";
 import { Collection } from "./Collection";
-import {
-  firestore,
-  convertCollectionsSnapshotToMap
-} from "../firebase/firebase.utils";
 import { connect } from "react-redux";
 import { updateCollections } from "../redux/shop/shopActions";
 import { Dispatch } from "redux";
 import { WithSpinner } from "../components/WithSpinner";
+import {
+  firestore,
+  convertCollectionsSnapshotToMap
+} from "../firebase/firebase.utils";
 
 const CollectionOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CollectionPageWithSpinner = WithSpinner(Collection);
@@ -30,16 +30,27 @@ const _Shop: React.FC<Props> = ({ match, updateCollections }) => {
 
   useEffect(() => {
     const collectionRef = firestore.collection("collections");
-    const unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
+
+    collectionRef.get().then(snapshot => {
       const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
       updateCollections(collectionsMap);
       setLoading(false);
     });
+    // fetch(
+    //   'https://firestore.googleapis.com/v1/projects/mechkb-ecommerce/databases/(default)/documents/collections'
+    // )
+    //   .then(res => res.json())
+    //   .then(data => console.log(data));
+    // const unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
+    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+    //   updateCollections(collectionsMap);
+    //   setLoading(false);
+    // });
 
-    return () => {
-      unsubscribeFromSnapshot();
-    };
-  }, [updateCollections]);
+    // return () => {
+    //   unsubscribeFromSnapshot();
+    // };
+  }, []);
 
   return (
     <StyledShop>
