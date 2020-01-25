@@ -51,9 +51,9 @@ const _Header: React.FC<Props> = ({
         <Link to="/shop" className="option">
           SHOP
         </Link>
-        <Link to="/contact" className="option">
+        {/* <Link to="/contact" className="option">
           CONTACT
-        </Link>
+        </Link> */}
         {currentUser ? (
           <div className="option hover-change" onClick={() => auth.signOut()}>
             SIGN OUT
