@@ -1,77 +1,55 @@
-import React, { useEffect, useState } from "react";
-import { CollectionsOverview } from "../components/CollectionsOverview";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Route, RouteProps } from "react-router-dom";
-import { Collection } from "./Collection";
 import { connect } from "react-redux";
-import { updateCollections } from "../redux/shop/shopActions";
 import { Dispatch } from "redux";
-import { WithSpinner } from "../components/WithSpinner";
+import { fetchCollectionsStart } from "../redux/shop/shopActions";
+import { createStructuredSelector } from "reselect";
 import {
-  firestore,
-  convertCollectionsSnapshotToMap
-} from "../firebase/firebase.utils";
-
-const CollectionOverviewWithSpinner = WithSpinner(CollectionsOverview);
-const CollectionPageWithSpinner = WithSpinner(Collection);
+  selectIsCollectionFetching,
+  selectIsCollectionsLoaded
+} from "../redux/shop/shopSelectors";
+import { CollectionsOverviewContainer } from "../components/CollectionsOverviewContainer";
+import { CollectionContainer } from "./CollectionContainer";
 
 interface Props {
   match: RouteProps;
   updateCollections: (collectionsMap: object) => void;
+  isCollectionFetching: boolean;
+  fetchCollectionsStart: () => void;
+  isCollectionsLoaded: any;
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  updateCollections: (collectionsMap: any) =>
-    dispatch(updateCollections(collectionsMap))
-});
-
-const _Shop: React.FC<Props> = ({ match, updateCollections }) => {
-  const [loading, setLoading] = useState(true);
-
+const _Shop: React.FC<Props> = ({ match, fetchCollectionsStart }) => {
   useEffect(() => {
-    const collectionRef = firestore.collection("collections");
-
-    collectionRef.get().then(snapshot => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-      updateCollections(collectionsMap);
-      setLoading(false);
-    });
-    // fetch(
-    //   'https://firestore.googleapis.com/v1/projects/mechkb-ecommerce/databases/(default)/documents/collections'
-    // )
-    //   .then(res => res.json())
-    //   .then(data => console.log(data));
-    // const unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
-    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-    //   updateCollections(collectionsMap);
-    //   setLoading(false);
-    // });
-
-    // return () => {
-    //   unsubscribeFromSnapshot();
-    // };
-  }, []);
+    fetchCollectionsStart();
+  }, [fetchCollectionsStart]);
 
   return (
     <StyledShop>
       <Route
         exact
         path={`${match.path}`}
-        render={props => (
-          <CollectionOverviewWithSpinner isLoading={loading} {...props} />
-        )}
+        component={CollectionsOverviewContainer}
       />
       <Route
         path={`${match.path}/:categoryId`}
-        render={props => (
-          <CollectionPageWithSpinner isLoading={loading} {...props} />
-        )}
+        component={CollectionContainer}
       />
     </StyledShop>
   );
 };
 
-export const Shop = connect(null, mapDispatchToProps)(_Shop);
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
+});
+
+const mapStateToProps = createStructuredSelector({
+  isCollectionFetching: selectIsCollectionFetching,
+  isCollectionsLoaded: selectIsCollectionsLoaded
+});
+
+export const Shop = connect(mapStateToProps, mapDispatchToProps)(_Shop);
 
 const StyledShop = styled("div")`
   display: flex;

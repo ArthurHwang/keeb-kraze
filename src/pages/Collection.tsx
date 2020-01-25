@@ -9,16 +9,11 @@ interface Props {
   match: RouteProps;
 }
 
-const mapStateToProps = (state: any, ownProps: any) => ({
-  collection: selectCollection(ownProps.match.params.categoryId)(state)
-});
-
 export const _Collection: React.FC<Props> = ({ collection }: any) => {
   const { title, items } = collection;
   return (
     <StyledCollection>
       <h2 className="title">{title}</h2>
-
       <div className="items">
         {items.map((item: any, idx: number) => (
           <CollectionItem item={item} key={idx} />
@@ -27,6 +22,10 @@ export const _Collection: React.FC<Props> = ({ collection }: any) => {
     </StyledCollection>
   );
 };
+
+const mapStateToProps = (state: any, ownProps: any) => ({
+  collection: selectCollection(ownProps.match.params.categoryId)(state)
+});
 
 export const Collection = connect(mapStateToProps)(_Collection);
 
