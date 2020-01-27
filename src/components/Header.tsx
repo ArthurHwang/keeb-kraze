@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { GoKeyboard as Logo } from "react-icons/go";
-import { auth } from "../firebase/firebase.utils";
 import { connect, RootStateOrAny } from "react-redux";
 import { CartIcon } from "./CartIcon";
 import { CartDropdown } from "./CartDropdown";

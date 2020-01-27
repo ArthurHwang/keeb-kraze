@@ -1,8 +1,5 @@
 import { ShopActionTypes } from "./shopTypes";
-import {
-  firestore,
-  convertCollectionsSnapshotToMap
-} from "../../firebase/firebase.utils";
+
 import { Dispatch } from "redux";
 import { call, all } from "redux-saga/effects";
 
@@ -19,5 +16,3 @@ export const fetchCollectionsFailure = (errorMessage: string) => ({
   type: ShopActionTypes.FETCH_COLLECTIONS_FAILURE,
   payload: errorMessage
 });
-
-export const fetchCollectionsStartAsync = (): any => (dispatch: Dispatch) => {};

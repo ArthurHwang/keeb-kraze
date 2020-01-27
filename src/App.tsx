@@ -6,17 +6,14 @@ import { Checkout } from "./pages/Checkout";
 import { Header } from "./components/Header";
 import { Login } from "./pages/Login";
 import { ThemeProvider } from "styled-components";
-// import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { Helmet } from "react-helmet";
 import { connect, RootStateOrAny } from "react-redux";
 import { Dispatch } from "redux";
-// import { setCurrentUser } from './redux/user/userActions';
 import { globalTheme } from "./globalTheme";
-import "./App.css";
 import { checkUserSession } from "./redux/user/userActions";
+import "./App.css";
 
 interface Props {
-  // setCurrentUser: (user: object | null) => any;
   currentUser: RootStateOrAny;
   checkUserSession: () => void;
 }
@@ -32,29 +29,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const _App: React.FC<Props> = ({ currentUser, checkUserSession }) => {
   useEffect(() => {
     checkUserSession();
-    // const unsubscribeFromAuth = auth.onAuthStateChanged(
-    //   async userAuth => {
-    //     if (userAuth) {
-    //       const userRef = await createUserProfileDocument(userAuth);
-    //       if (userRef) {
-    //         userRef.onSnapshot(snapShot => {
-    //           setCurrentUser({
-    //             currentUser: {
-    //               id: snapShot.id,
-    //               ...snapShot.data()
-    //             }
-    //           });
-    //         });
-    //       }
-    //     } else {
-    //       setCurrentUser(userAuth);
-    //     }
-    //   },
-    //   err => console.log(err)
-    // );
-    // return () => {
-    //   unsubscribeFromAuth();
-    // };
   }, [checkUserSession]);
 
   return (
