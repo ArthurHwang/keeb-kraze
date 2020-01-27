@@ -3,7 +3,8 @@ import { rootReducer } from "./rootReducer";
 import logger from "redux-logger";
 import { persistStore } from "redux-persist";
 import createSagaMiddleware from "redux-saga";
-import { fetchCollectionStart } from "./shop/shopSagas";
+// import { fetchCollectionStart } from './shop/shopSagas';
+import rootSaga from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 const middlewares: any = [sagaMiddleware];
@@ -25,5 +26,5 @@ const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
 export const store = createStore(rootReducer, enhancer);
 
-sagaMiddleware.run(fetchCollectionStart);
+sagaMiddleware.run(rootSaga);
 export const persistor = persistStore(store);

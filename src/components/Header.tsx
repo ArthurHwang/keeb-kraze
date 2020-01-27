@@ -9,6 +9,7 @@ import { CartDropdown } from "./CartDropdown";
 import { toggleCart } from "../redux/cart/cartActions";
 import { Dispatch } from "redux";
 import { selectCartItemsCount } from "../redux/cart/cartSelectors";
+import { signOutStart } from "../redux/user/userActions";
 
 export interface User {
   id: string;
@@ -19,6 +20,7 @@ export interface User {
 interface Props {
   currentUser: User;
   toggleCart: () => void;
+  signOutStart: () => void;
   showCart: boolean;
   cartItems: any;
   itemCount: number;
@@ -32,7 +34,8 @@ const mapStateToProps = ({ user, cart }: RootStateOrAny) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  toggleCart: () => dispatch(toggleCart())
+  toggleCart: () => dispatch(toggleCart()),
+  signOutStart: () => dispatch(signOutStart())
 });
 
 const _Header: React.FC<Props> = ({
@@ -40,7 +43,8 @@ const _Header: React.FC<Props> = ({
   toggleCart,
   showCart,
   cartItems,
-  itemCount
+  itemCount,
+  signOutStart
 }) => {
   return (
     <StyledHeader>
@@ -55,7 +59,7 @@ const _Header: React.FC<Props> = ({
           CONTACT
         </Link> */}
         {currentUser ? (
-          <div className="option hover-change" onClick={() => auth.signOut()}>
+          <div className="option hover-change" onClick={signOutStart}>
             SIGN OUT
           </div>
         ) : (

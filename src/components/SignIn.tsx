@@ -2,22 +2,23 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { FormInput } from "./FormInput";
 import { CustomButton } from "./CustomButton";
-import { signInWithGoogle, auth } from "../firebase/firebase.utils";
+// import { signInWithGoogle, auth } from '../firebase/firebase.utils';
+import { googleSignInStart, emailSignInStart } from "../redux/user/userActions";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
 
-export const SignIn: React.FC = () => {
+interface Props {
+  googleSignInStart: () => void;
+  emailSignInStart: (email: string, password: string) => void;
+}
+
+const _SignIn: React.FC<Props> = ({ googleSignInStart, emailSignInStart }) => {
   const [values, setValues] = useState({ email: "", password: "" });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     const { email, password } = values;
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      setValues({ email: "", password: "" });
-    } catch (error) {
-      console.log(error);
-    }
-    setValues({ email: "", password: "" });
+    emailSignInStart(email, password);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -48,7 +49,11 @@ export const SignIn: React.FC = () => {
         />
         <div className="buttons">
           <CustomButton buttonType="submit">Sign In</CustomButton>
-          <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+          <CustomButton
+            buttonType="button"
+            onClick={googleSignInStart}
+            isGoogleSignIn
+          >
             Sign In With Google
           </CustomButton>
         </div>
@@ -56,6 +61,14 @@ export const SignIn: React.FC = () => {
     </StyledSignIn>
   );
 };
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  googleSignInStart: () => dispatch(googleSignInStart()),
+  emailSignInStart: (email: string, password: string) =>
+    dispatch(emailSignInStart({ email, password }))
+});
+
+export const SignIn = connect(null, mapDispatchToProps)(_SignIn);
 
 const StyledSignIn = styled("div")`
   width: 380px;

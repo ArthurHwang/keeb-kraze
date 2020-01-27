@@ -6,17 +6,19 @@ import { Checkout } from "./pages/Checkout";
 import { Header } from "./components/Header";
 import { Login } from "./pages/Login";
 import { ThemeProvider } from "styled-components";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+// import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { Helmet } from "react-helmet";
 import { connect, RootStateOrAny } from "react-redux";
 import { Dispatch } from "redux";
-import { setCurrentUser } from "./redux/user/userActions";
+// import { setCurrentUser } from './redux/user/userActions';
 import { globalTheme } from "./globalTheme";
 import "./App.css";
+import { checkUserSession } from "./redux/user/userActions";
 
 interface Props {
-  setCurrentUser: (user: object | null) => any;
+  // setCurrentUser: (user: object | null) => any;
   currentUser: RootStateOrAny;
+  checkUserSession: () => void;
 }
 
 const mapStateToProps = (state: RootStateOrAny) => ({
@@ -24,35 +26,36 @@ const mapStateToProps = (state: RootStateOrAny) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  setCurrentUser: (user: any) => dispatch(setCurrentUser(user))
+  checkUserSession: () => dispatch(checkUserSession())
 });
 
-const _App: React.FC<Props> = ({ setCurrentUser, currentUser }) => {
+const _App: React.FC<Props> = ({ currentUser, checkUserSession }) => {
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged(
-      async userAuth => {
-        if (userAuth) {
-          const userRef = await createUserProfileDocument(userAuth);
-          if (userRef) {
-            userRef.onSnapshot(snapShot => {
-              setCurrentUser({
-                currentUser: {
-                  id: snapShot.id,
-                  ...snapShot.data()
-                }
-              });
-            });
-          }
-        } else {
-          setCurrentUser(userAuth);
-        }
-      },
-      err => console.log(err)
-    );
-    return () => {
-      unsubscribeFromAuth();
-    };
-  }, [setCurrentUser]);
+    checkUserSession();
+    // const unsubscribeFromAuth = auth.onAuthStateChanged(
+    //   async userAuth => {
+    //     if (userAuth) {
+    //       const userRef = await createUserProfileDocument(userAuth);
+    //       if (userRef) {
+    //         userRef.onSnapshot(snapShot => {
+    //           setCurrentUser({
+    //             currentUser: {
+    //               id: snapShot.id,
+    //               ...snapShot.data()
+    //             }
+    //           });
+    //         });
+    //       }
+    //     } else {
+    //       setCurrentUser(userAuth);
+    //     }
+    //   },
+    //   err => console.log(err)
+    // );
+    // return () => {
+    //   unsubscribeFromAuth();
+    // };
+  }, [checkUserSession]);
 
   return (
     <>
