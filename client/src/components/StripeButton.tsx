@@ -1,12 +1,25 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
-
+import { withRouter } from "react-router-dom";
+import { clearCart } from "../redux/cart/cartActions";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
 interface Props {
   price: number;
+  history: any;
+  clearCart: () => void;
 }
 
-export const StripeCheckoutButton: React.FC<Props> = ({ price }) => {
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  clearCart: () => dispatch(clearCart())
+});
+
+const _StripeCheckoutButton: React.FC<Props> = ({
+  price,
+  history,
+  clearCart
+}) => {
   const priceForStripe = price * 100;
   const publishableKey = "pk_test_F15gVMCjL0zcALGykvIC9HXi00sB0BMkiX";
 
@@ -21,7 +34,8 @@ export const StripeCheckoutButton: React.FC<Props> = ({ price }) => {
     })
       .then(response => {
         console.log(response);
-        alert("Payment Successful");
+        clearCart();
+        history.push("/thank-you");
       })
       .catch(error => {
         console.log("Payment error: ", error);
@@ -30,17 +44,24 @@ export const StripeCheckoutButton: React.FC<Props> = ({ price }) => {
   };
 
   return (
-    <StripeCheckout
-      amount={priceForStripe}
-      panelLabel="Pay Now"
-      label="Pay Now"
-      name="Keeb Kraze"
-      billingAddress
-      shippingAddress
-      image="/favicon.png"
-      description={`Your total is $${price}`}
-      token={onToken}
-      stripeKey={publishableKey}
-    />
+    (console.log(history) as any) || (
+      <StripeCheckout
+        amount={priceForStripe}
+        panelLabel="Pay Now"
+        label="Pay Now"
+        name="Keeb Kraze"
+        billingAddress
+        shippingAddress
+        image="/favicon.png"
+        description={`Your total is $${price}`}
+        token={onToken}
+        stripeKey={publishableKey}
+      />
+    )
   );
 };
+// @ts-ignore
+export const StripeCheckoutButton = withRouter(
+  // @ts-ignore
+  connect(null, mapDispatchToProps)(_StripeCheckoutButton)
+);

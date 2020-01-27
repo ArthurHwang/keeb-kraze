@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet";
 import { connect, RootStateOrAny } from "react-redux";
 import { Dispatch } from "redux";
 import { globalTheme } from "./globalTheme";
+import { ThankYou } from "./pages/ThankYou";
 import { checkUserSession } from "./redux/user/userActions";
 import "./App.css";
 
@@ -39,6 +40,7 @@ const _App: React.FC<Props> = ({ currentUser, checkUserSession }) => {
           <Route exact path="/" component={Homepage} />
           <Route path="/shop" component={Shop} />
           <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/thank-you" component={ThankYou} />
           <Route
             exact
             path="/login"
