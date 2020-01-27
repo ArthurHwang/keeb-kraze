@@ -24,7 +24,7 @@ const SpinnerOverlay = styled("div")`
 
 const SpinnerContainer = styled("div")`
   display: inline-block;
-  /* margin: 0 auto; */
+  margin: 0 auto;
   width: 50px;
   /* justify-self: center; */
   /* align-self: middle; */
