@@ -28,6 +28,7 @@ export function* getSnapshotFromUserAuth(userAuth: any, additionalData?: any) {
     yield put(signInFailure(error));
   }
 }
+
 export function* signInWithGoogle() {
   try {
     const { user } = yield auth.signInWithPopup(googleProvider);
@@ -64,6 +65,7 @@ export function* signOut() {
     yield put(signOutFailure(error));
   }
 }
+
 export function* signUp({ payload: { email, password, displayName } }: any) {
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);

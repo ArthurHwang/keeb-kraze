@@ -11,10 +11,6 @@ interface Props {
   clearCart: () => void;
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  clearCart: () => dispatch(clearCart())
-});
-
 const _StripeCheckoutButton: React.FC<Props> = ({
   price,
   history,
@@ -44,22 +40,25 @@ const _StripeCheckoutButton: React.FC<Props> = ({
   };
 
   return (
-    (console.log(history) as any) || (
-      <StripeCheckout
-        amount={priceForStripe}
-        panelLabel="Pay Now"
-        label="Pay Now"
-        name="Keeb Kraze"
-        billingAddress
-        shippingAddress
-        image="/favicon.png"
-        description={`Your total is $${price}`}
-        token={onToken}
-        stripeKey={publishableKey}
-      />
-    )
+    <StripeCheckout
+      amount={priceForStripe}
+      panelLabel="Pay Now"
+      label="Pay Now"
+      name="Keeb Kraze"
+      billingAddress
+      shippingAddress
+      image="/favicon.png"
+      description={`Your total is $${price}`}
+      token={onToken}
+      stripeKey={publishableKey}
+    />
   );
 };
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  clearCart: () => dispatch(clearCart())
+});
+
 // @ts-ignore
 export const StripeCheckoutButton = withRouter(
   // @ts-ignore

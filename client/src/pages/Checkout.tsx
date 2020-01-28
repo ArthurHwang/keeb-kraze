@@ -10,11 +10,6 @@ interface Props {
   total: number;
 }
 
-const mapStateToProps = ({ cart }: RootStateOrAny) => ({
-  cartItems: selectCartItems(cart),
-  total: selectCartTotal(cart)
-});
-
 const _Checkout: React.FC<Props> = ({ cartItems, total }) => (
   <StyledCheckout>
     <div className="checkout-header">
@@ -48,6 +43,11 @@ const _Checkout: React.FC<Props> = ({ cartItems, total }) => (
     </div>
   </StyledCheckout>
 );
+
+const mapStateToProps = ({ cart }: RootStateOrAny) => ({
+  cartItems: selectCartItems(cart),
+  total: selectCartTotal(cart)
+});
 
 export const Checkout = connect(mapStateToProps)(_Checkout);
 

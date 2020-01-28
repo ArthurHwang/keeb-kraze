@@ -25,18 +25,6 @@ interface Props {
   itemCount: number;
 }
 
-const mapStateToProps = ({ user, cart }: RootStateOrAny) => ({
-  currentUser: user.currentUser,
-  showCart: cart.showCart,
-  cartItems: cart.cartItems,
-  itemCount: selectCartItemsCount(cart)
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  toggleCart: () => dispatch(toggleCart()),
-  signOutStart: () => dispatch(signOutStart())
-});
-
 const _Header: React.FC<Props> = ({
   currentUser,
   toggleCart,
@@ -75,6 +63,20 @@ const _Header: React.FC<Props> = ({
   );
 };
 
+const mapStateToProps = ({ user, cart }: RootStateOrAny) => ({
+  currentUser: user.currentUser,
+  showCart: cart.showCart,
+  cartItems: cart.cartItems,
+  itemCount: selectCartItemsCount(cart)
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  toggleCart: () => dispatch(toggleCart()),
+  signOutStart: () => dispatch(signOutStart())
+});
+
+export const Header = connect(mapStateToProps, mapDispatchToProps)(_Header);
+
 const StyledHeader = styled("header")`
   height: 70px;
   width: 100%;
@@ -100,5 +102,3 @@ const StyledHeader = styled("header")`
     }
   }
 `;
-
-export const Header = connect(mapStateToProps, mapDispatchToProps)(_Header);

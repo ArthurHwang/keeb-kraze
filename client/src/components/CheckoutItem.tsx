@@ -15,12 +15,6 @@ interface Props {
   decreaseCartQuantity: any;
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  clearItemFromCart: (item: any) => dispatch(clearItemFromCart(item)),
-  increaseCartQuantity: (item: any) => dispatch(increaseCartQuantity(item)),
-  decreaseCartQuantity: (item: any) => dispatch(decreaseCartQuantity(item))
-});
-
 const _CheckoutItem: React.FC<Props> = ({
   clearItemFromCart,
   increaseCartQuantity,
@@ -50,6 +44,12 @@ const _CheckoutItem: React.FC<Props> = ({
     </StyledCheckoutItem>
   );
 };
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  clearItemFromCart: (item: any) => dispatch(clearItemFromCart(item)),
+  increaseCartQuantity: (item: any) => dispatch(increaseCartQuantity(item)),
+  decreaseCartQuantity: (item: any) => dispatch(decreaseCartQuantity(item))
+});
 
 export const CheckoutItem = connect(null, mapDispatchToProps)(_CheckoutItem);
 

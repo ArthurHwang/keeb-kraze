@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+interface Props {
+  history: any;
+}
+const _ThankYou: React.FC<Props> = ({ history }) => {
+  useEffect(() => {
+    const timedRedirect = setTimeout(() => {
+      history.push("/");
+    }, 5000);
 
-export const ThankYou: React.FC = () => (
-  <StyledThankYou>
-    <h2>Thank you for your order!</h2>
-    <h3>You will receive an email confirmation shortly!</h3>
-    <Link className="home-link" to="/">
-      Go Home
-    </Link>
-  </StyledThankYou>
-);
+    return () => clearTimeout(timedRedirect);
+  }, []);
 
+  return (
+    <StyledThankYou>
+      <h2>Thank you for your order!</h2>
+      <h3>You will receive an email confirmation shortly!</h3>
+      <Link className="home-link" to="/">
+        Go Home
+      </Link>
+    </StyledThankYou>
+  );
+};
+
+export const ThankYou = withRouter(_ThankYou);
 const StyledThankYou = styled("div")`
   display: flex;
   justify-content: center;

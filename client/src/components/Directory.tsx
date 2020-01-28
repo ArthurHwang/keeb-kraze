@@ -17,10 +17,6 @@ interface Props {
   };
 }
 
-const mapStateToProps = createStructuredSelector({
-  directory: selectDirectorySections
-});
-
 export const _Directory: React.FC<Props> = ({ directory }) => {
   return (
     <StyledDirectory className="directory-menu">
@@ -32,6 +28,10 @@ export const _Directory: React.FC<Props> = ({ directory }) => {
     </StyledDirectory>
   );
 };
+
+const mapStateToProps = createStructuredSelector({
+  directory: selectDirectorySections
+});
 
 export const Directory = connect(mapStateToProps)(_Directory);
 

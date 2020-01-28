@@ -14,10 +14,6 @@ interface Props {
   };
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  addItem: (item: any) => dispatch(addItem(item))
-});
-
 export const _CollectionItem: React.FC<Props> = ({ item, addItem }) => {
   const { name, price, imageUrl } = item;
   return (
@@ -38,6 +34,10 @@ export const _CollectionItem: React.FC<Props> = ({ item, addItem }) => {
     </StyledCollectionItem>
   );
 };
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  addItem: (item: any) => dispatch(addItem(item))
+});
 
 export const CollectionItem = connect(
   null,

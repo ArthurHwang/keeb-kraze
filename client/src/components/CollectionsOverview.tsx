@@ -5,10 +5,6 @@ import { createStructuredSelector } from "reselect";
 import { CollectionPreview } from "../components/CollectionPreview";
 import { selectCollectionsForPreview } from "../redux/shop/shopSelectors";
 
-const mapStateToProps = createStructuredSelector({
-  collection: selectCollectionsForPreview
-});
-
 interface Props {
   collection: any[];
 }
@@ -20,6 +16,10 @@ const _CollectionsOverview: React.FC<Props> = ({ collection }) => (
     ))}
   </StyledCollectionsOverview>
 );
+
+const mapStateToProps = createStructuredSelector({
+  collection: selectCollectionsForPreview
+});
 
 export const CollectionsOverview = connect(mapStateToProps)(
   _CollectionsOverview

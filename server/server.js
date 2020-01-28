@@ -41,6 +41,7 @@ app.post("/payment", (req, res) => {
     }
   });
 });
+
 app.listen(port, error => {
   if (error) throw error;
   console.log(`Server running on port ${port}`);
