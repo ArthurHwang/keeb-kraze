@@ -24,6 +24,7 @@ const CollectionContainer = lazy(() =>
     default: module.CollectionContainer
   }))
 );
+
 const CollectionsOverviewContainer = lazy(() =>
   import("../components/CollectionsOverviewContainer").then(module => ({
     default: module.CollectionsOverviewContainer
