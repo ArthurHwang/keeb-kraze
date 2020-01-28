@@ -29,7 +29,6 @@ const _StripeCheckoutButton: React.FC<Props> = ({
       }
     })
       .then(response => {
-        console.log(response);
         clearCart();
         history.push("/thank-you");
       })
