@@ -8,6 +8,7 @@ import { Dispatch } from "redux";
 import { globalTheme } from "./globalTheme";
 import { checkUserSession } from "./redux/user/userActions";
 import { Spinner } from "./components/Spinner";
+import ErrorBoundary from "./components/ErrorBoundary";
 import "./App.css";
 
 const Homepage = lazy(() =>
@@ -55,17 +56,19 @@ const _App: React.FC<Props> = ({
       <Header />
       <Switch>
         <ThemeProvider theme={globalTheme}>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path="/" component={Homepage} />
-            <Route path="/shop" component={Shop} />
-            <Route exact path="/checkout" component={Checkout} />
-            <Route exact path="/thank-you" component={ThankYou} />
-            <Route
-              exact
-              path="/login"
-              render={() => (currentUser ? <Redirect to="/" /> : <Login />)}
-            />{" "}
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<Spinner />}>
+              <Route exact path="/" component={Homepage} />
+              <Route path="/shop" component={Shop} />
+              <Route exact path="/checkout" component={Checkout} />
+              <Route exact path="/thank-you" component={ThankYou} />
+              <Route
+                exact
+                path="/login"
+                render={() => (currentUser ? <Redirect to="/" /> : <Login />)}
+              />{" "}
+            </Suspense>
+          </ErrorBoundary>
         </ThemeProvider>
       </Switch>
     </>
