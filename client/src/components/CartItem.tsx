@@ -7,7 +7,7 @@ interface Props {
   price: number;
   imageUrl: string;
 }
-export const CartItem: React.FC<Props> = ({
+const _CartItem: React.FC<Props> = ({
   name,
   quantity,
   price,
@@ -28,6 +28,8 @@ export const CartItem: React.FC<Props> = ({
     </StyledCartItem>
   );
 };
+
+export const CartItem = React.memo(_CartItem);
 
 const StyledCartItem = styled("div")`
   width: 100%;

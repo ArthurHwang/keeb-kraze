@@ -17,7 +17,9 @@ const _SignIn: React.FC<Props> = ({
 }): ReactElement => {
   const [values, setValues] = useState({ email: "", password: "" });
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
     const { email, password } = values;
     emailSignInStart(email, password);
