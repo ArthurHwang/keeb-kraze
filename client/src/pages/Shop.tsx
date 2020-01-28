@@ -1,16 +1,15 @@
-import React, { useEffect, ReactElement } from "react";
+import React, { useEffect, ReactElement, lazy, Suspense } from "react";
 import styled from "styled-components";
 import { Route, RouteProps } from "react-router-dom";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { fetchCollectionsStart } from "../redux/shop/shopActions";
 import { createStructuredSelector } from "reselect";
-import { CollectionsOverviewContainer } from "../components/CollectionsOverviewContainer";
-import { CollectionContainer } from "./CollectionContainer";
 import {
   selectIsCollectionFetching,
   selectIsCollectionsLoaded
 } from "../redux/shop/shopSelectors";
+import { Spinner } from "../components/Spinner";
 
 interface Props {
   match: RouteProps;
@@ -19,6 +18,17 @@ interface Props {
   fetchCollectionsStart: () => void;
   isCollectionsLoaded: any;
 }
+
+const CollectionContainer = lazy(() =>
+  import("./CollectionContainer").then(module => ({
+    default: module.CollectionContainer
+  }))
+);
+const CollectionsOverviewContainer = lazy(() =>
+  import("../components/CollectionsOverviewContainer").then(module => ({
+    default: module.CollectionsOverviewContainer
+  }))
+);
 
 const _Shop: React.FC<Props> = ({
   match,
@@ -30,15 +40,17 @@ const _Shop: React.FC<Props> = ({
 
   return (
     <StyledShop>
-      <Route
-        exact
-        path={`${match.path}`}
-        component={CollectionsOverviewContainer}
-      />
-      <Route
-        path={`${match.path}/:categoryId`}
-        component={CollectionContainer}
-      />
+      <Suspense fallback={<Spinner />}>
+        <Route
+          exact
+          path={`${match.path}`}
+          component={CollectionsOverviewContainer}
+        />
+        <Route
+          path={`${match.path}/:categoryId`}
+          component={CollectionContainer}
+        />
+      </Suspense>
     </StyledShop>
   );
 };

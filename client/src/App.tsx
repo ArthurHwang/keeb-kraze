@@ -1,18 +1,34 @@
-import React, { useEffect, ReactElement } from "react";
-import { Homepage } from "./pages/Homepage";
+import React, { useEffect, ReactElement, lazy, Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { Shop } from "./pages/Shop";
-import { Checkout } from "./pages/Checkout";
 import { Header } from "./components/Header";
-import { Login } from "./pages/Login";
 import { ThemeProvider } from "styled-components";
 import { Helmet } from "react-helmet";
 import { connect, RootStateOrAny } from "react-redux";
 import { Dispatch } from "redux";
 import { globalTheme } from "./globalTheme";
-import { ThankYou } from "./pages/ThankYou";
 import { checkUserSession } from "./redux/user/userActions";
+import { Spinner } from "./components/Spinner";
 import "./App.css";
+
+const Homepage = lazy(() =>
+  import("./pages/Homepage").then(module => ({ default: module.Homepage }))
+);
+
+const Shop = lazy(() =>
+  import("./pages/Shop").then(module => ({ default: module.Shop }))
+);
+
+const Checkout = lazy(() =>
+  import("./pages/Checkout").then(module => ({ default: module.Checkout }))
+);
+
+const ThankYou = lazy(() =>
+  import("./pages/ThankYou").then(module => ({ default: module.ThankYou }))
+);
+
+const Login = lazy(() =>
+  import("./pages/Login").then(module => ({ default: module.Login }))
+);
 
 interface Props {
   currentUser: RootStateOrAny;
@@ -26,7 +42,6 @@ const _App: React.FC<Props> = ({
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
-
   return (
     <>
       <Helmet>
@@ -40,15 +55,17 @@ const _App: React.FC<Props> = ({
       <Header />
       <Switch>
         <ThemeProvider theme={globalTheme}>
-          <Route exact path="/" component={Homepage} />
-          <Route path="/shop" component={Shop} />
-          <Route exact path="/checkout" component={Checkout} />
-          <Route exact path="/thank-you" component={ThankYou} />
-          <Route
-            exact
-            path="/login"
-            render={() => (currentUser ? <Redirect to="/" /> : <Login />)}
-          />
+          <Suspense fallback={<Spinner />}>
+            <Route exact path="/" component={Homepage} />
+            <Route path="/shop" component={Shop} />
+            <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/thank-you" component={ThankYou} />
+            <Route
+              exact
+              path="/login"
+              render={() => (currentUser ? <Redirect to="/" /> : <Login />)}
+            />{" "}
+          </Suspense>
         </ThemeProvider>
       </Switch>
     </>
