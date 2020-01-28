@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ReactElement } from "react";
 import styled from "styled-components";
 import { FormInput } from "./FormInput";
 import { CustomButton } from "./CustomButton";
@@ -11,7 +11,10 @@ interface Props {
   emailSignInStart: (email: string, password: string) => void;
 }
 
-const _SignIn: React.FC<Props> = ({ googleSignInStart, emailSignInStart }) => {
+const _SignIn: React.FC<Props> = ({
+  googleSignInStart,
+  emailSignInStart
+}): ReactElement => {
   const [values, setValues] = useState({ email: "", password: "" });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

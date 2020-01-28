@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   buttonType?: string;
@@ -11,7 +11,7 @@ export const CustomButton: React.FC<Props> = ({
   isGoogleSignIn,
   inverted,
   ...otherProps
-}) => (
+}): ReactElement => (
   <StyledCustomButton
     className={`${inverted && "inverted"} ${isGoogleSignIn &&
       "google-sign-in"} custom-button`}

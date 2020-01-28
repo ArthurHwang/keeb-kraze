@@ -17,7 +17,7 @@ interface Props {
   };
 }
 
-export const _Directory: React.FC<Props> = ({ directory }) => {
+export const _Directory: React.FC<Props> = ({ directory }): ReactElement => {
   return (
     <StyledDirectory className="directory-menu">
       {directory.map(

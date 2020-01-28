@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import {
@@ -20,7 +20,7 @@ const _CheckoutItem: React.FC<Props> = ({
   increaseCartQuantity,
   decreaseCartQuantity,
   item
-}) => {
+}): ReactElement => {
   const { name, imageUrl, price, quantity } = item;
   return (
     <StyledCheckoutItem>

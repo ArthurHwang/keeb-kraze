@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 
 interface Props {
@@ -12,7 +12,7 @@ export const CartItem: React.FC<Props> = ({
   quantity,
   price,
   imageUrl
-}) => {
+}): ReactElement => {
   if (quantity > 1) {
     price = quantity * price;
   }

@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, ReactElement } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 interface Props {
   history: any;
 }
-const _ThankYou: React.FC<Props> = ({ history }) => {
+const _ThankYou: React.FC<Props> = ({ history }): ReactElement => {
   useEffect(() => {
     const timedRedirect = setTimeout(() => {
       history.push("/");
     }, 5000);
 
     return () => clearTimeout(timedRedirect);
-  }, []);
+  }, [history]);
 
   return (
     <StyledThankYou>

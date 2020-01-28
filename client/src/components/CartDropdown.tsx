@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { CartItem } from "./CartItem";
 import { CustomButton } from "./CustomButton";
@@ -14,7 +14,11 @@ interface Props {
   dispatch: Dispatch;
 }
 
-const _CartDropdown: React.FC<Props> = ({ cartItems, history, dispatch }) => (
+const _CartDropdown: React.FC<Props> = ({
+  cartItems,
+  history,
+  dispatch
+}): ReactElement => (
   <StyledCart>
     <div className="cart-items">
       {cartItems.length ? (

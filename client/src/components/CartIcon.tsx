@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { ReactComponent as ShoppingIcon } from "../assets/shopping-bag.svg";
 
@@ -7,7 +7,10 @@ interface Props {
   itemCount: number;
 }
 
-export const CartIcon: React.FC<Props> = ({ handleClick, itemCount }) => {
+export const CartIcon: React.FC<Props> = ({
+  handleClick,
+  itemCount
+}): ReactElement => {
   return (
     <StyledCartIcon onClick={handleClick}>
       <ShoppingIcon className="shopping-icon" />

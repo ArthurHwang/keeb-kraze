@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { addItem } from "../redux/cart/cartActions";
@@ -14,7 +14,10 @@ interface Props {
   };
 }
 
-export const _CollectionItem: React.FC<Props> = ({ item, addItem }) => {
+export const _CollectionItem: React.FC<Props> = ({
+  item,
+  addItem
+}): ReactElement => {
   const { name, price, imageUrl } = item;
   return (
     <StyledCollectionItem>

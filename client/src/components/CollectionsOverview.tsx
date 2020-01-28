@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -9,7 +9,9 @@ interface Props {
   collection: any[];
 }
 
-const _CollectionsOverview: React.FC<Props> = ({ collection }) => (
+const _CollectionsOverview: React.FC<Props> = ({
+  collection
+}): ReactElement => (
   <StyledCollectionsOverview>
     {collection.map(({ id, ...otherCollectionProps }: any) => (
       <CollectionPreview key={id} {...otherCollectionProps} />

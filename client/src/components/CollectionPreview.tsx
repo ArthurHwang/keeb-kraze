@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { CollectionItem } from "./CollectionItem";
 
@@ -14,7 +14,10 @@ interface itemParams {
   price: number;
 }
 
-export const CollectionPreview: React.FC<Props> = ({ title, items }) => (
+export const CollectionPreview: React.FC<Props> = ({
+  title,
+  items
+}): ReactElement => (
   <StyledCollectionPreview className="collection-preview">
     <h1 className="title">{title.toUpperCase()}</h1>
     <div className="preview">

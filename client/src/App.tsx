@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, ReactElement } from "react";
 import { Homepage } from "./pages/Homepage";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Shop } from "./pages/Shop";
@@ -19,7 +19,10 @@ interface Props {
   checkUserSession: () => void;
 }
 
-const _App: React.FC<Props> = ({ currentUser, checkUserSession }) => {
+const _App: React.FC<Props> = ({
+  currentUser,
+  checkUserSession
+}): ReactElement => {
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);

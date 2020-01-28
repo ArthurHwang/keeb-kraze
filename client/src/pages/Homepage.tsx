@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { Directory } from "../components/Directory";
 
-export const Homepage: React.FC = () => {
+export const Homepage: React.FC = (): ReactElement => {
   return (
     <StyledHomepage className="homepage">
       <Directory />

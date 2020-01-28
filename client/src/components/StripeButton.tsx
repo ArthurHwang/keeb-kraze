@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
@@ -15,7 +15,7 @@ const _StripeCheckoutButton: React.FC<Props> = ({
   price,
   history,
   clearCart
-}) => {
+}): ReactElement => {
   const priceForStripe = price * 100;
   const publishableKey = "pk_test_F15gVMCjL0zcALGykvIC9HXi00sB0BMkiX";
 

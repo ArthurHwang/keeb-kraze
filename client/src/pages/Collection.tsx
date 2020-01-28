@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { CollectionItem } from "../components/CollectionItem";
 import { RouteProps } from "react-router-dom";
@@ -9,7 +9,9 @@ interface Props {
   match: RouteProps;
 }
 
-export const _Collection: React.FC<Props> = ({ collection }: any) => {
+export const _Collection: React.FC<Props> = ({
+  collection
+}: any): ReactElement => {
   const { title, items } = collection;
   return (
     <StyledCollection>

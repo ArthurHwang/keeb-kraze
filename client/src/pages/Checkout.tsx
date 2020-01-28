@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { connect, RootStateOrAny } from "react-redux";
 import { selectCartItems, selectCartTotal } from "../redux/cart/cartSelectors";
@@ -10,7 +10,7 @@ interface Props {
   total: number;
 }
 
-const _Checkout: React.FC<Props> = ({ cartItems, total }) => (
+const _Checkout: React.FC<Props> = ({ cartItems, total }): ReactElement => (
   <StyledCheckout>
     <div className="checkout-header">
       <div className="header-block">

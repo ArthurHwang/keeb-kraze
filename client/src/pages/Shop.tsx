@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, ReactElement } from "react";
 import styled from "styled-components";
 import { Route, RouteProps } from "react-router-dom";
 import { connect } from "react-redux";
@@ -20,7 +20,10 @@ interface Props {
   isCollectionsLoaded: any;
 }
 
-const _Shop: React.FC<Props> = ({ match, fetchCollectionsStart }) => {
+const _Shop: React.FC<Props> = ({
+  match,
+  fetchCollectionsStart
+}): ReactElement => {
   useEffect(() => {
     fetchCollectionsStart();
   }, [fetchCollectionsStart]);

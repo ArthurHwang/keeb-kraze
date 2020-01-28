@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ReactElement } from "react";
 import styled from "styled-components";
 import { FormInput } from "./FormInput";
 import { CustomButton } from "./CustomButton";
@@ -10,7 +10,7 @@ interface Props {
   signUpStart: (userCredentials: any) => void;
 }
 
-const _SignUp: React.FC<Props> = ({ signUpStart }) => {
+const _SignUp: React.FC<Props> = ({ signUpStart }): ReactElement => {
   const [values, setValues] = useState({
     displayName: "",
     email: "",

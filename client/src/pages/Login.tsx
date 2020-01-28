@@ -1,9 +1,9 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { SignIn } from "../components/SignIn";
 import { SignUp } from "../components/SignUp";
 
-export const Login: React.FC = () => (
+export const Login: React.FC = (): ReactElement => (
   <StyledLogin>
     <SignIn />
     <StyledDivider />

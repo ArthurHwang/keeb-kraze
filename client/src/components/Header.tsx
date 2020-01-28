@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { GoKeyboard as Logo } from "react-icons/go";
@@ -32,7 +32,7 @@ const _Header: React.FC<Props> = ({
   cartItems,
   itemCount,
   signOutStart
-}) => {
+}): ReactElement => {
   return (
     <StyledHeader>
       <Link className="logo-container" to="/">

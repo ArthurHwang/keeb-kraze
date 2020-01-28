@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 
 interface Props {
@@ -14,7 +14,7 @@ export const FormInput: React.FC<Props> = ({
   handleChange,
   label,
   ...otherProps
-}) => (
+}): ReactElement => (
   <StyledFormInput>
     <input className="form-input" onChange={handleChange} {...otherProps} />
     {label ? (
