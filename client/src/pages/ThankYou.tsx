@@ -1,4 +1,4 @@
-import React, { useEffect, ReactElement } from "react";
+import React, { useEffect, ReactElement, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
@@ -6,6 +6,8 @@ interface Props {
   history: any;
 }
 const _ThankYou: React.FC<Props> = ({ history }): ReactElement => {
+  const [timer, setTimer] = useState(5);
+
   useEffect(() => {
     const timedRedirect = setTimeout(() => {
       history.push("/");
@@ -14,10 +16,19 @@ const _ThankYou: React.FC<Props> = ({ history }): ReactElement => {
     return () => clearTimeout(timedRedirect);
   }, [history]);
 
+  useEffect(() => {
+    const countdownTimer = setInterval(() => {
+      setTimer(timer - 1);
+    }, 1000);
+
+    return () => clearInterval(countdownTimer);
+  }, [timer]);
+
   return (
     <StyledThankYou>
       <h2>Thank you for your order!</h2>
       <h3>You will receive an email confirmation shortly!</h3>
+      <h3>Redirecting in ... {timer} seconds</h3>
       <Link className="home-link" to="/">
         Go Home
       </Link>
@@ -33,7 +44,8 @@ const StyledThankYou = styled("div")`
   align-items: center;
   height: 100%;
 
-  h2 {
+  h2,
+  h3 {
     margin-bottom: 30px;
   }
 
