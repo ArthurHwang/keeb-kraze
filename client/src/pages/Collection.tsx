@@ -49,3 +49,5 @@ const StyledCollection = styled("div")`
     }
   }
 `;
+STRIPE_SECRET_KEY;
+sk_test_dFSmDiG4ILQpoIfD9yKqkvPn00KfaFvmkB;
