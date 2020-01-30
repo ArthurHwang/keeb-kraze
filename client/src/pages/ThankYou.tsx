@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 interface Props {
   history: any;
 }
+
 const _ThankYou: React.FC<Props> = ({ history }): ReactElement => {
   const [timer, setTimer] = useState(5);
 
