@@ -35,6 +35,7 @@ const _Shop: React.FC<Props> = ({
   match,
   fetchCollectionsStart
 }): ReactElement => {
+  console.log(match);
   useEffect(() => {
     fetchCollectionsStart();
   }, [fetchCollectionsStart]);

@@ -7,11 +7,10 @@ import { selectCollection } from "../redux/shop/shopSelectors";
 
 interface Props {
   match: RouteProps;
+  collection: any;
 }
 
-export const _Collection: React.FC<Props> = ({
-  collection
-}: any): ReactElement => {
+const _Collection: React.FC<Props> = ({ collection }): ReactElement => {
   const { title, items } = collection;
   return (
     <StyledCollection>
