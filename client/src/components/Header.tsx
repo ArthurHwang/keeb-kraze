@@ -112,6 +112,10 @@ const StyledHeader = styled("header")`
     align-items: center;
     justify-content: flex-end;
 
+    @media (max-width: 500px) {
+      width: 80%;
+    }
+
     .option {
       padding: 10px 15px;
       cursor: pointer;

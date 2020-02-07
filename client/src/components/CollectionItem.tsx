@@ -71,6 +71,16 @@ const StyledCollectionItem = styled("div")<{ path: string }>`
     position: absolute;
     bottom: 20px;
     display: none;
+
+    border: 2px solid #606060;
+    border-radius: 4px;
+
+    @media (max-width: 872px) {
+      display: block;
+      background-color: #606060;
+      border-radius: 4px;
+      color: #fff;
+    }
   }
 
   &:hover {
