@@ -9,7 +9,9 @@ import { globalTheme } from "./globalTheme";
 import { checkUserSession } from "./redux/user/userActions";
 import { Spinner } from "./components/Spinner";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { Footer } from "./components/Footer";
 import "./App.css";
+import { findByLabelText } from "@testing-library/react";
 
 const Homepage = lazy(() =>
   import("./pages/Homepage").then(module => ({ default: module.Homepage }))
@@ -53,24 +55,33 @@ const _App: React.FC<Props> = ({
         <link rel="icon" type="image/png" href="/favicon.png" sizes="16x16" />
         <title>Keeb Kraze</title>
       </Helmet>
-      <Header />
-      <Switch>
-        <ThemeProvider theme={globalTheme}>
-          <ErrorBoundary>
-            <Suspense fallback={<Spinner />}>
-              <Route exact path="/" component={Homepage} />
-              <Route path="/shop" component={Shop} />
-              <Route exact path="/checkout" component={Checkout} />
-              <Route exact path="/thank-you" component={ThankYou} />
-              <Route
-                exact
-                path="/login"
-                render={() => (currentUser ? <Redirect to="/" /> : <Login />)}
-              />{" "}
-            </Suspense>
-          </ErrorBoundary>
-        </ThemeProvider>
-      </Switch>
+      <div
+        style={{ display: "flex", minHeight: "100vh", flexDirection: "column" }}
+      >
+        <Header />
+        <main style={{ flex: "1" }}>
+          <Switch>
+            <ThemeProvider theme={globalTheme}>
+              <ErrorBoundary>
+                <Suspense fallback={<Spinner />}>
+                  <Route exact path="/" component={Homepage} />
+                  <Route path="/shop" component={Shop} />
+                  <Route exact path="/checkout" component={Checkout} />
+                  <Route exact path="/thank-you" component={ThankYou} />
+                  <Route
+                    exact
+                    path="/login"
+                    render={() =>
+                      currentUser ? <Redirect to="/" /> : <Login />
+                    }
+                  />{" "}
+                </Suspense>
+              </ErrorBoundary>
+            </ThemeProvider>
+          </Switch>
+        </main>
+      </div>
+      <Footer />
     </>
   );
 };

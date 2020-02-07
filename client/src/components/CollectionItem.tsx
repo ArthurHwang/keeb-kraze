@@ -7,6 +7,7 @@ import { Dispatch } from "redux";
 
 interface Props {
   addItem: any;
+  path?: any;
   item: {
     price: number;
     name: string;
@@ -16,18 +17,21 @@ interface Props {
 
 export const _CollectionItem: React.FC<Props> = ({
   item,
-  addItem
+  addItem,
+  path
 }): ReactElement => {
+  console.log(path);
   const { name, price, imageUrl } = item;
   return (
-    <StyledCollectionItem>
+    <StyledCollectionItem path={path}>
       <div
         className="image"
         style={{
           backgroundImage: `url(${imageUrl})`
         }}
       />
-      <div className="collection-footer">
+      <div className="collection-header">
+        <div className="opacity"></div>
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
@@ -47,55 +51,83 @@ export const CollectionItem = connect(
   mapDispatchToProps
 )(_CollectionItem);
 
-const StyledCollectionItem = styled("div")`
-  width: 22vw;
+const StyledCollectionItem = styled("div")<{ path: string }>`
+  width: ${props => (props.path ? "100%" : "25%")};
   display: flex;
   flex-direction: column;
   height: 350px;
   align-items: center;
   position: relative;
+  overflow: hidden;
 
   .custom-button {
-    width: 80%;
+    width: 100%;
     opacity: 0.7;
     position: absolute;
-    top: 255px;
+    bottom: 0;
     display: none;
   }
 
   &:hover {
     .image {
-      opacity: 0.8;
+      opacity: 1;
+      transform: scale(1.1);
+      transition: transform 2s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     }
 
     .custom-button {
-      opacity: 0.85;
+      opacity: 0.7;
       display: flex;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    & .background-image {
+      transform: scale(1.1);
+      transition: transform 2s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+    }
+
+    & .content {
+      opacity: 0.7;
     }
   }
 
   .image {
     width: 100%;
-    height: 95%;
+    height: 100%;
     background-size: cover;
     background-position: center;
-    margin-bottom: 5px;
   }
 
-  .collection-footer {
+  .collection-header {
     width: 100%;
-    height: 5%;
+    height: auto;
     display: flex;
+    position: absolute;
     justify-content: space-between;
     font-size: 18px;
+    align-items: center;
+    padding: 3px 10%;
+    color: ${({ theme }) => theme.black};
 
-    .name {
-      width: 90%;
-      margin-bottom: 15px;
+    .opacity {
+      opacity: 0.3;
+      width: 100%;
+      height: 26px;
+      left: 0;
+      top: 0;
+
+      position: absolute;
+      background-color: ${({ theme }) => theme.white};
+      border: 2px solid ${({ theme }) => theme.grey};
     }
 
+    .name,
     .price {
-      width: 10%;
+      font-weight: bold;
+      z-index: 1;
     }
   }
 `;

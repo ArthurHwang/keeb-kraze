@@ -36,8 +36,15 @@ const mapStateToProps = createStructuredSelector({
 export const Directory = connect(mapStateToProps)(_Directory);
 
 const StyledDirectory = styled("div")`
+  padding: 0 0 0;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  height: calc(100vh - 70px);
   justify-content: space-between;
+
+  @media (max-width: 500px) {
+    display: block;
+    height: auto;
+  }
 `;

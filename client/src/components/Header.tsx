@@ -37,6 +37,7 @@ const _Header: React.FC<Props> = ({
     <StyledHeader>
       <Link className="logo-container" to="/">
         <Logo fontSize="50px" className="logo" />
+        <span className="brand-name">Keeb Kraze</span>
       </Link>
       <div className="options">
         <Link to="/shop" className="option">
@@ -82,11 +83,26 @@ const StyledHeader = styled("header")`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
+  padding: 0 60px;
+  border-bottom: 1px solid #dbdbdb;
+
+  @media (max-width: 500px) {
+    padding: 0 5px;
+  }
 
   .logo-container {
     display: flex;
     align-items: center;
+
+    .brand-name {
+      margin-left: 10px;
+      color: ${({ theme }) => theme.black};
+      text-shadow: 0 0 0 0.5 #1d242f;
+
+      @media (max-width: 500px) {
+        display: none;
+      }
+    }
   }
 
   .options {

@@ -41,38 +41,36 @@ export default withRouter(MenuItem);
 const StyledMenuItem = styled("div")`
   min-width: 30%;
   position: relative;
-  height: 240px;
+  height: 50%;
   flex: 1 1 auto;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   border: 1px solid black;
-  margin: 0 7.5px 15px;
   overflow: hidden;
+
+  @media (max-width: 500px) {
+    height: 300px;
+  }
 
   &:hover {
     cursor: pointer;
 
     & .background-image {
       transform: scale(1.1);
-      transition: transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+      transition: transform 2s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     }
 
     & .content {
-      opacity: 0.9;
+      opacity: 0.7;
     }
   }
 
-  &:first-child {
-    margin-right: 7.5px;
-  }
-
-  &:last-child {
-    margin-left: 7.5px;
-  }
-
   &.large {
-    height: 380px;
+    height: 50%;
+    @media (max-width: 500px) {
+      height: 400px;
+    }
   }
 
   .background-image {
@@ -84,15 +82,16 @@ const StyledMenuItem = styled("div")`
   }
 
   .content {
-    height: 90px;
+    width: 100%;
+    height: 70px;
     padding: 0 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
     background-color: white;
-    opacity: 0.7;
+    opacity: 0.5;
+    position: relative;
 
     .title {
       font-weight: bold;

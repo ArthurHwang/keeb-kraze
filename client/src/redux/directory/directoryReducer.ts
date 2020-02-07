@@ -7,27 +7,30 @@ const INITIAL_STATE = {
       imageUrl:
         "https://live.staticflickr.com/5826/30295544320_68b9b0d6b5_b.jpg",
       id: 1,
-      linkUrl: "shop/keyboards"
+      linkUrl: "shop/keyboards",
+      size: "large"
     },
     {
       title: "keycaps",
       imageUrl:
         "https://i.pinimg.com/originals/93/6a/fc/936afc46bac9f85de22966c88677217d.jpg",
       id: 2,
-      linkUrl: "shop/keycaps"
+      linkUrl: "shop/keycaps",
+      size: "large"
     },
     {
       title: "switches",
       imageUrl:
         "https://cdn.shopify.com/s/files/1/3099/8088/products/Gateron_Silent_Red_1024x1024@2x.jpg?v=1558704648",
       id: 3,
-      linkUrl: "shop/switches"
+      linkUrl: "shop/switches",
+      size: "large"
     },
     {
       title: "accessories",
       imageUrl:
         "https://images.idgesg.net/images/article/2018/07/img_20180706_202831-100764491-large.jpg",
-      size: "large",
+
       id: 4,
       linkUrl: "shop/accessories"
     },
@@ -35,7 +38,7 @@ const INITIAL_STATE = {
       title: "parts",
       imageUrl:
         "https://cdn.shopify.com/s/files/1/1674/0405/products/sp111_plate_768x.png?v=1575664053",
-      size: "large",
+      // size: "large",
       id: 5,
       linkUrl: "shop/parts"
     }
