@@ -65,5 +65,9 @@ const StyledCollectionPreview = styled("div")`
   .preview {
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 872px) {
+      display: block;
+    }
   }
 `;

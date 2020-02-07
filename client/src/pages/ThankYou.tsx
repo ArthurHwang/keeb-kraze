@@ -29,6 +29,7 @@ const _ThankYou: React.FC<Props> = ({ history }): ReactElement => {
     <StyledThankYou>
       <h2>Thank you for your order!</h2>
       <h3>You will receive an email confirmation shortly!</h3>
+      <h3>Your cart has been cleared</h3>
       <h3>Redirecting in ... {timer} seconds</h3>
       <Link className="home-link" to="/">
         Go Home

@@ -60,11 +60,16 @@ const StyledCollectionItem = styled("div")<{ path: string }>`
   position: relative;
   overflow: hidden;
 
-  .custom-button {
+  @media (max-width: 872px) {
     width: 100%;
+  }
+
+  .custom-button {
+    width: 90%;
+    margin: 0 auto;
     opacity: 0.7;
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     display: none;
   }
 
@@ -113,21 +118,28 @@ const StyledCollectionItem = styled("div")<{ path: string }>`
     color: ${({ theme }) => theme.black};
 
     .opacity {
-      opacity: 0.3;
-      width: 100%;
+      opacity: 0.6;
+      width: 90%;
       height: 26px;
       left: 0;
-      top: 0;
+      margin: 0 auto;
+      right: 0;
+      top: 20px;
 
       position: absolute;
-      background-color: ${({ theme }) => theme.white};
-      border: 2px solid ${({ theme }) => theme.grey};
+      background-color: #606060;
+      border: 2px solid #606060;
+      border-radius: 4px;
     }
 
     .name,
     .price {
       font-weight: bold;
+      text-shadow: 1px 1px 2px black;
+      position: relative;
+      top: 20px;
       z-index: 1;
+      color: ${({ theme }) => theme.yellow};
     }
   }
 `;
