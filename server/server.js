@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const compression = require("compression");
 const enforce = require("express-sslify");
+const sslRedirect = require("heroku-ssl-redirect");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config({
@@ -19,6 +20,7 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(enforce.HTTPS({ trustProtoHeader: true }));
+app.use(sslRedirect());
 app.use(cors());
 
 if (process.env.NODE_ENV === "production") {
