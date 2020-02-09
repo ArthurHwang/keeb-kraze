@@ -7,6 +7,7 @@ import {
   decreaseCartQuantity
 } from "../redux/cart/cartActions";
 import { Dispatch } from "redux";
+import { IoMdArrowDropright, IoMdArrowDropleft } from "react-icons/io";
 
 interface Props {
   item: any;
@@ -30,11 +31,11 @@ const _CheckoutItem: React.FC<Props> = ({
       <span className="name">{name}</span>
       <div className="quantity">
         <div onClick={() => decreaseCartQuantity(item)} className="arrow">
-          &#10094;
+          <IoMdArrowDropleft style={{ position: "relative", top: "4px" }} />
         </div>
         <span className="value">{quantity}</span>
         <div onClick={() => increaseCartQuantity(item)} className="arrow">
-          &#10095;
+          <IoMdArrowDropright style={{ position: "relative", top: "4px" }} />
         </div>
       </div>
       <span className="price">${price}</span>
@@ -78,9 +79,10 @@ const StyledCheckoutItem = styled("div")`
   }
 
   .quantity {
-    padding-left: 20px;
     display: flex;
     align-items: center;
+    position: relative;
+    right: 14px;
 
     .value {
       margin: 0 10px;

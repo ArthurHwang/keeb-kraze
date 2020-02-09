@@ -42,6 +42,7 @@ const StyledCollectionPreview = styled("div")`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  margin-bottom: 40px;
 
   h1 {
     margin: 0;

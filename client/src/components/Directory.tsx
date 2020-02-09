@@ -40,7 +40,7 @@ const StyledDirectory = styled("div")`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 140px);
   justify-content: space-between;
 
   @media (max-width: 500px) {

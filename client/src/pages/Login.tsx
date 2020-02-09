@@ -16,6 +16,12 @@ const StyledLogin = styled("div")`
   display: flex;
   justify-content: space-evenly;
   margin: 30px auto;
+
+  @media (max-width: 860px) {
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+  }
 `;
 
 const StyledDivider = styled("div")`

@@ -4,8 +4,10 @@ import { Directory } from "../components/Directory";
 
 export const Homepage: React.FC = (): ReactElement => {
   return (
-    <StyledHomepage className="homepage">
-      <Directory />
+    <>
+      <StyledHomepage className="homepage">
+        <Directory />
+      </StyledHomepage>
       <StyledIntro>
         <h1>Welcome To Keeb Kraze!</h1>
         <p>
@@ -24,12 +26,19 @@ export const Homepage: React.FC = (): ReactElement => {
           test credit card supplied on the checkout page.
         </p>
       </StyledIntro>
-    </StyledHomepage>
+    </>
   );
 };
 
 const StyledHomepage = styled("div")`
-  padding: 0;
+  max-width: 1600px;
+
+  margin: 40px auto;
+
+  @media (max-width: 500px) {
+    padding: 0 5%;
+  }
+
   h1 {
     margin-top: 0;
   }

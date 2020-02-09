@@ -57,6 +57,7 @@ const _SignIn: React.FC<Props> = ({
             buttonType="button"
             onClick={googleSignInStart}
             isGoogleSignIn
+            inverted
           >
             Sign In With Google
           </CustomButton>
@@ -78,6 +79,10 @@ const StyledSignIn = styled("div")`
   width: 380px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 860px) {
+    margin: 0 auto 40px;
+  }
 
   .title {
     margin: 10px 0;

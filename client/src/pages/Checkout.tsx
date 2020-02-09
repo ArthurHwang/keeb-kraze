@@ -37,7 +37,7 @@ const _Checkout: React.FC<Props> = ({ cartItems, total }): ReactElement => (
     </div>
     <StripeCheckoutButton price={total} />
     <div className="test-warning">
-      *Please use the following test credit card for payments
+      *Please use the following test credit card for payments:
       <br />
       4242 4242 4242 4242 - Exp: 06/20 - CVV: 123
     </div>
@@ -59,12 +59,20 @@ const StyledCheckout = styled("div")`
   align-items: center;
   margin: 50px auto 0;
 
+  @media (max-width: 1000px) {
+    width: 95%;
+  }
+
   .checkout-header {
     width: 100%;
     padding: 10px 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     border-bottom: 1px solid darkgrey;
+
+    @media (max-width: 700px) {
+      font-size: 10px;
+    }
 
     .header-block {
       text-transform: capitalize;
@@ -89,8 +97,11 @@ const StyledCheckout = styled("div")`
 
   .test-warning {
     text-align: center;
-    margin-top: 40px;
-    font-size: 24px;
+    margin-top: 240px;
+    margin-bottom: 60px;
+    font-size: 18px;
+    width: 100%;
     color: red;
+    background-color: ${({ theme }) => theme.grey};
   }
 `;

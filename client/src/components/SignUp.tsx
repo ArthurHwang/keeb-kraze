@@ -88,4 +88,8 @@ const StyledSignUp = styled("div")`
   display: flex;
   flex-direction: column;
   width: 380px;
+
+  @media (max-width: 860px) {
+    margin: 40px auto 0;
+  }
 `;

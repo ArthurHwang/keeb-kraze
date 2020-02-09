@@ -69,6 +69,6 @@ const mapStateToProps = createStructuredSelector({
 export const Shop = connect(mapStateToProps, mapDispatchToProps)(_Shop);
 
 const StyledShop = styled("div")`
-  display: flex;
-  flex-direction: column;
+  max-width: 1600px;
+  margin: 40px auto;
 `;

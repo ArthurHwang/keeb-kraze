@@ -16,13 +16,16 @@ const SpinnerOverlay = styled("div")`
 `;
 
 const SpinnerContainer = styled("div")`
-  display: inline-block;
+  /* display: inline-block; */
   margin: 0 auto;
   width: 50px;
   height: 50px;
   border: 3px solid rgba(195, 195, 195, 0.6);
   border-radius: 50%;
   border-top-color: #636767;
+  position: relative;
+  top: 20px;
+  transform: translateY() (-50%);
   animation: spin 1s ease-in-out infinite;
   -webkit-animation: spin 1s ease-in-out infinite;
   @keyframes spin {

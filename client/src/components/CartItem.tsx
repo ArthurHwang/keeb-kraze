@@ -34,20 +34,21 @@ export const CartItem = React.memo(_CartItem);
 const StyledCartItem = styled("div")`
   width: 100%;
   display: flex;
-  height: 80px;
+  height: 60px;
   margin-bottom: 15px;
 
   img {
     width: 30%;
+    object-fit: cover;
   }
 
   .item-details {
-    width: 70%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding: 10px 20px;
+    padding: 10px 0 10px 20px;
 
     .name {
       font-size: 16px;
