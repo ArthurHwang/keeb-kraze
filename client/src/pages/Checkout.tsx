@@ -97,7 +97,7 @@ const StyledCheckout = styled("div")`
 
   .test-warning {
     text-align: center;
-    margin-top: 240px;
+    /* margin-top: 240px; */
     margin-bottom: 60px;
     font-size: 18px;
     width: 100%;
