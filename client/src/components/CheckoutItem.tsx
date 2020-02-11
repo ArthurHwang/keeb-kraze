@@ -30,11 +30,11 @@ const _CheckoutItem: React.FC<Props> = ({
       </div>
       <span className="name">{name}</span>
       <div className="quantity">
-        <div onClick={() => decreaseCartQuantity(item)} className="arrow">
+        <div onClick={() => decreaseCartQuantity(item)} className="arrow left">
           <IoMdArrowDropleft style={{ position: "relative", top: "4px" }} />
         </div>
         <span className="value">{quantity}</span>
-        <div onClick={() => increaseCartQuantity(item)} className="arrow">
+        <div onClick={() => increaseCartQuantity(item)} className="arrow right">
           <IoMdArrowDropright style={{ position: "relative", top: "4px" }} />
         </div>
       </div>
@@ -72,6 +72,12 @@ const StyledCheckoutItem = styled("div")`
       height: 100%;
     }
   }
+
+  .name {
+    @media (max-width: 450px) {
+      font-size: 14px;
+    }
+  }
   .name,
   .quantity,
   .price {
@@ -93,6 +99,19 @@ const StyledCheckoutItem = styled("div")`
 
       &:hover {
         cursor: pointer;
+      }
+
+      &.left {
+        @media (max-width: 450px) {
+          position: relative;
+          left: 10px;
+        }
+      }
+      &.right {
+        @media (max-width: 450px) {
+          position: relative;
+          right: 10px;
+        }
       }
     }
   }

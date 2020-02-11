@@ -11,7 +11,7 @@ import { Spinner } from "./components/Spinner";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { Footer } from "./components/Footer";
 import "./App.css";
-import { findByLabelText } from "@testing-library/react";
+// import { findByLabelText } from "@testing-library/react";
 
 const Homepage = lazy(() =>
   import("./pages/Homepage").then(module => ({ default: module.Homepage }))

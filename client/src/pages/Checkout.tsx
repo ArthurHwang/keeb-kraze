@@ -25,7 +25,7 @@ const _Checkout: React.FC<Props> = ({ cartItems, total }): ReactElement => (
       <div className="header-block">
         <span>Price</span>
       </div>
-      <div className="header-block">
+      <div className="header-block remove">
         <span>Remove</span>
       </div>
     </div>
@@ -63,6 +63,10 @@ const StyledCheckout = styled("div")`
     width: 95%;
   }
 
+  @media (max-width: 450px) {
+    padding: 0 5%;
+  }
+
   .checkout-header {
     width: 100%;
     padding: 10px 0;
@@ -81,6 +85,13 @@ const StyledCheckout = styled("div")`
       &:last-child {
         width: 8%;
       }
+
+      &.remove {
+        @media (max-width: 450px) {
+          position: relative;
+          right: 15px;
+        }
+      }
     }
   }
 
@@ -97,7 +108,7 @@ const StyledCheckout = styled("div")`
 
   .test-warning {
     text-align: center;
-    /* margin-top: 240px; */
+    margin-top: 240px;
     margin-bottom: 60px;
     font-size: 18px;
     width: 100%;

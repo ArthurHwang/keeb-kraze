@@ -71,4 +71,5 @@ export const Shop = connect(mapStateToProps, mapDispatchToProps)(_Shop);
 const StyledShop = styled("div")`
   max-width: 1600px;
   margin: 40px auto;
+  padding: 0 5%;
 `;
