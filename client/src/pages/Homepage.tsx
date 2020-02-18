@@ -5,14 +5,11 @@ import { Directory } from "../components/Directory";
 export const Homepage: React.FC = (): ReactElement => {
   return (
     <>
-      <StyledHomepage className="homepage">
-        <Directory />
-      </StyledHomepage>
-      <StyledIntro>
+      <StyledIntro style={{ textAlign: "center" }}>
         <h1>Welcome To Keeb Kraze!</h1>
         <p>
-          Thank you for stopping by Keeb Kraze! Here you will find a selection
-          of custom keyboards, parts, and accessories available to purchase.
+          Thank you for stopping by! Here you will find a selection of custom
+          keyboards, parts, and accessories available to purchase.
         </p>
         <p>
           This website was made with React, TypeScript, Redux, Express,
@@ -20,18 +17,21 @@ export const Homepage: React.FC = (): ReactElement => {
         </p>
         <p>This is a for fun website I built to learn Redux-Saga in depth.</p>
         <p>Please feel free to make an account or login with Oauth.</p>
-        <p>
-          <span style={{ color: "red" }}>**Note**</span> Stripe Checkout is in
+        {/* <p>
+          <span style={{ color: 'red' }}>**Note**</span> Stripe Checkout is in
           test mode and does not take a real form of payment. Please use the
           test credit card supplied on the checkout page.
-        </p>
+        </p> */}
       </StyledIntro>
+      <StyledHomepage className="homepage">
+        <Directory />
+      </StyledHomepage>
     </>
   );
 };
 
 const StyledHomepage = styled("div")`
-  max-width: 1600px;
+  max-width: 90%;
 
   margin: 40px auto;
 

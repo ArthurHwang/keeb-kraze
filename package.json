@@ -1,8 +1,8 @@
 {
   "name": "keeb-kraze-server",
   "engines": {
-    "node": "12.10.0",
-    "npm": "6.4.1"
+    "node": "13.8.0",
+    "npm": "6.13.6"
   },
   "version": "1.0.0",
   "scripts": {

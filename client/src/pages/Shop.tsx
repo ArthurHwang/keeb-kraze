@@ -69,7 +69,7 @@ const mapStateToProps = createStructuredSelector({
 export const Shop = connect(mapStateToProps, mapDispatchToProps)(_Shop);
 
 const StyledShop = styled("div")`
-  max-width: 1600px;
+  max-width: 90%;
   margin: 40px auto;
   padding: 0 5%;
 `;
