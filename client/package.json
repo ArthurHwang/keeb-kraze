@@ -22,7 +22,7 @@
     "@types/redux-thunk": "^2.1.0",
     "@types/reselect": "^2.2.0",
     "@types/styled-components": "^4.4.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "firebase": "^7.7.0",
     "husky": "^4.2.1",
     "prettier": "^1.19.1",
